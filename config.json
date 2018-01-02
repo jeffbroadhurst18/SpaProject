@@ -1,0 +1,10 @@
+{
+	"Logging": {
+		"LogLevel": {
+			"Default": "Warning"
+		}
+	},
+	"ConnectionStrings": {
+		"SpaConnectionString": "Server=BROADHURST_WIN8\\BROADHURST;Database=SpaData;Trusted_Connection=True;MultipleActiveResultSets=true;"
+	}
+}
