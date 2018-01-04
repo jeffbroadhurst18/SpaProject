@@ -39,6 +39,8 @@ namespace SpaProject
 			services.AddDbContext<SpaContext>(cfg => {
 				cfg.UseSqlServer(_config.GetConnectionString("SpaConnectionString"));
 			});
+
+			services.AddScoped<ISpaRepository, SpaRepository>();
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
