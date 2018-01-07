@@ -48,5 +48,19 @@ namespace SpaProject.Controllers
 				return BadRequest("Bad Result"); //return 400;
 			}
 		}
+
+		[HttpGet("{id:int}")]
+		public IActionResult Get(int id)
+		{
+			try
+			{
+				return Ok(repository.GetProductById(id));
+			}
+			catch (Exception ex)
+			{
+				logger.LogError($"Failed to get result {ex.Message}");
+				return BadRequest("Bad Result"); //return 400;
+			}
+		}
 	}
 }
