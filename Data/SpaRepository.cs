@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SpaProject.Data.Items;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace SpaProject.Data
 {
@@ -59,5 +60,39 @@ namespace SpaProject.Data
 				return null;
 			}
 		}
+
+		public IEnumerable<Order> GetOrders(bool includeItems)
+		{
+			try
+			{
+				logger.LogInformation("In GetOrders");
+				if (includeItems)
+				{
+					return ctx.Orders.Include(i => i.Items).OrderByDescending(o => o.OrderDate);
+				}
+				return ctx.Orders.OrderByDescending(o => o.OrderDate);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError($"Failed to GetOrders {ex.Message} {ex.StackTrace}");
+				return null;
+			}
+		}
+
+		public IEnumerable<Order> GetOrdersById(int id)
+		{
+			try
+			{
+				logger.LogInformation("In GetOrders");
+				return ctx.Orders.Where(i => i.Id == id).Include(i => i)
+						.OrderByDescending(o => o.OrderDate);
+			}
+			catch (Exception ex)
+			{
+				logger.LogError($"Failed to GetOrdersById {ex.Message} {ex.StackTrace}");
+				return null;
+			}
+		}
 	}
 }
+;

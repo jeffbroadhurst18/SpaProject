@@ -11,6 +11,7 @@ using SpaProject.Data;
 using Microsoft.AspNetCore.Identity;
 using SpaProject.Data.Items;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace SpaProject
 {
@@ -40,6 +41,9 @@ namespace SpaProject
 				cfg.UseSqlServer(_config.GetConnectionString("SpaConnectionString"));
 			});
 
+			services.AddAutoMapper(); //needed the automapper dependency injection package.
+
+			services.AddTransient<SpaSeeder>();
 			services.AddScoped<ISpaRepository, SpaRepository>();
 		}
 
@@ -71,6 +75,13 @@ namespace SpaProject
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
-        }
+
+			using (var scope = app.ApplicationServices.CreateScope())
+			{
+				var seeder = scope.ServiceProvider.GetService<SpaSeeder>();
+				seeder.Seed().Wait(); ; //seeder is async .Wait waits for it to finish without making 
+										// the whole method async.
+			}
+		}
     }
 }

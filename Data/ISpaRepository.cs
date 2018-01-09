@@ -11,5 +11,7 @@ namespace SpaProject.Data
 		IEnumerable<Product> GetAllProducts();
 		Product GetProductById(int id);
 		IEnumerable<Product> GetProductByCategory(string category);
+		IEnumerable<Order> GetOrders(bool includeItems);
+		IEnumerable<Order> GetOrdersById(int id);
 	}
 }
