@@ -26,6 +26,14 @@
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
   </ItemGroup>
+    
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\shop\product-list.component.ts" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\shop\product-list.component.ts" />
+  </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
     <!-- Ensure Node.js is installed -->

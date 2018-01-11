@@ -15,12 +15,14 @@ namespace SpaProject.Data
 		private readonly SpaContext _ctx;
 		private readonly IHostingEnvironment _hosting;
 		private readonly UserManager<StoreUser> _userManager;
+		private readonly ISpaRepository _repository;
 
-		public SpaSeeder(SpaContext ctx, IHostingEnvironment hosting, UserManager<StoreUser> userManager)
+		public SpaSeeder(SpaContext ctx, IHostingEnvironment hosting, UserManager<StoreUser> userManager, ISpaRepository repository)
 		{
 			_ctx = ctx;
 			_hosting = hosting;
 			_userManager = userManager;
+			_repository = repository;
 		}
 
 		public async Task Seed()
@@ -48,12 +50,14 @@ namespace SpaProject.Data
 				}
 			}
 
-			if (!_ctx.Products.Any())
+			if (!_ctx.Orders.Any())
 			{
-				var filepath = Path.Combine(_hosting.ContentRootPath, "Data/art.json");
-				var json = File.ReadAllText(filepath);
-				var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(json);
-				_ctx.Products.AddRange(products); //Adds more than one at once.
+				//var filepath = Path.Combine(_hosting.ContentRootPath, "Data/art.json");
+				//var json = File.ReadAllText(filepath);
+				//var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(json);
+				//_ctx.Products.AddRange(products); //Adds more than one at once.
+
+				var products = _repository.GetAllProducts();
 
 				var order = new Order
 				{
@@ -66,7 +70,8 @@ namespace SpaProject.Data
 						Quantity = 5,
 						UnitPrice = products.First().Price
 						}
-					}
+					},
+					User = user
 				};
 				_ctx.Orders.Add(order);
 

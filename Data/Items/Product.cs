@@ -19,5 +19,7 @@ namespace SpaProject.Data.Items
 		public string Title { get; set; }
 		[Required]
 		public int StockLevel { get; set; }
+
+		public string FilePath { get; set; }
 	}
 }

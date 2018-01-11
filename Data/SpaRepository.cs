@@ -68,9 +68,9 @@ namespace SpaProject.Data
 				logger.LogInformation("In GetOrders");
 				if (includeItems)
 				{
-					return ctx.Orders.Include(i => i.Items).OrderByDescending(o => o.OrderDate);
+					return ctx.Orders.Include(i => i.Items).ThenInclude(v => v.Product).OrderByDescending(o => o.OrderDate).ToList();
 				}
-				return ctx.Orders.OrderByDescending(o => o.OrderDate);
+				return ctx.Orders.OrderByDescending(o => o.OrderDate).ToList();
 			}
 			catch (Exception ex)
 			{
@@ -84,8 +84,9 @@ namespace SpaProject.Data
 			try
 			{
 				logger.LogInformation("In GetOrders");
-				return ctx.Orders.Where(i => i.Id == id).Include(i => i)
-						.OrderByDescending(o => o.OrderDate);
+				return ctx.Orders.Where(i => i.Id == id).Include(i => i.Items)
+					.ThenInclude(p => p.Product).Include(u => u.User)					
+					.OrderByDescending(o => o.OrderDate).ToList();
 			}
 			catch (Exception ex)
 			{
