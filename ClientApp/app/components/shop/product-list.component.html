@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+﻿<div class="row">
+	<div class="product-info col-md-4 well well-sm" *ngFor="let p of products">
+		<img src="/img/{{p.filePath}}" class="img-responsive" [alt]="p.title" />
+		<div class="product-name">{{p.title}}</div>
+		<div><strong>Price: </strong>{{p.price | currency:"GBP":true}}</div>
+		<div><strong>Size: </strong>{{p.size}}</div>
+		<button id="buyButton" class="btn btn-success btn-sm pull-right" (click)="addProduct(p)">Buy</button>
+	</div>
+</div>
 
-</body>
-</html>

@@ -10,6 +10,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { ShopComponent } from './components/shop/shop.component';
+import { ProductListComponent } from './components/shop/product-list.component';
+import { DataService } from "./components/shared/data.service";
 
 @NgModule({
     declarations: [
@@ -18,7 +20,8 @@ import { ShopComponent } from './components/shop/shop.component';
         CounterComponent,
         FetchDataComponent,
 		HomeComponent,
-		ShopComponent
+		ShopComponent,
+		ProductListComponent
     ],
     imports: [
         CommonModule,
@@ -32,7 +35,10 @@ import { ShopComponent } from './components/shop/shop.component';
 			{ path: 'the-shop', component: ShopComponent },
             { path: '**', redirectTo: 'home' }
         ])
-    ]
+	],
+	providers: [
+		DataService
+	]
 })
 export class AppModuleShared {
 }

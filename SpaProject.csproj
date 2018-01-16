@@ -28,11 +28,21 @@
   </ItemGroup>
     
   <ItemGroup>
+    <None Remove="ClientApp\app\components\shared\data.service.ts" />
+    <None Remove="ClientApp\app\components\shared\order.ts" />
+    <None Remove="ClientApp\app\components\shared\product.ts" />
     <None Remove="ClientApp\app\components\shop\product-list.component.ts" />
   </ItemGroup>
     
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\shared\data.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\order.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\product.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shop\product-list.component.ts" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

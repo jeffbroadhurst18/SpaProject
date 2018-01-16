@@ -1,13 +1,13 @@
 ﻿import { Component, OnInit } from "@angular/core";
-import { DataService } from "../shared/dataService";
+import { DataService } from "../shared/data.service";
 import { Product } from "../shared/product";
 
 @Component({
 	selector: "product-list",
-	templateUrl: "productList.component.html",
-	styleUrls: ["productList.component.css"]
+	templateUrl: "./product-list.component.html",
+	styleUrls: ["./product-list.component.css"]
 })
-export class ProductList implements OnInit {
+export class ProductListComponent implements OnInit {
 
 	public products: Product[] = [];
 
@@ -23,8 +23,8 @@ export class ProductList implements OnInit {
 		})
 	}
 
-	addProduct(product: Product) {
-		this.data.AddToOrder(product);
-	}
+	//addProduct(product: Product) {
+	//	this.data.AddToOrder(product);
+	//}
 
 }
