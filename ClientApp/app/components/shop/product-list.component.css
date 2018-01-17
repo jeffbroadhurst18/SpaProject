@@ -2,10 +2,22 @@
 	max-width: 100px;
 	float: left;
 	margin: 0 2px; /*0 at top/bottom 2 left/right*/
-	border: solid 1px black;
+	border: solid 1px #A9A9A9;
 }
 
 .product-info .product-name {
 	font-size: large;
 	font-weight: bold;
+	float:left;
+	width:100%;
+}
+
+.product-item {
+	float: left;
+	width:100%;
+}
+
+.sold-out {
+	color: red;
+	font-weight:bold;
 }

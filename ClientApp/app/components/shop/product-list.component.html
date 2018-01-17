@@ -2,9 +2,11 @@
 	<div class="product-info col-md-4 well well-sm" *ngFor="let p of products">
 		<img src="/img/{{p.filePath}}" class="img-responsive" [alt]="p.title" />
 		<div class="product-name">{{p.title}}</div>
-		<div><strong>Price: </strong>{{p.price | currency:"GBP":true}}</div>
-		<div><strong>Size: </strong>{{p.size}}</div>
-		<button id="buyButton" class="btn btn-success btn-sm pull-right" (click)="addProduct(p)">Buy</button>
+		<div class="product-item"><strong>Price: </strong>{{p.price | currency:"GBP":true}}</div>
+		<div class="product-item"><strong>Size: </strong>{{p.size}}</div>
+		<div *ngIf="p.stockLevel <= 0" class="sold-out product-item">SOLD OUT</div>
+		<div *ngIf="p.stockLevel > 0" class="product-item"><strong>IN STOCK</strong></div>
+		<button id="buyButton" class="btn btn-success btn-sm pull-right" (click)="addProduct(p)" [disabled]="p.stockLevel <= 0">Buy</button>
 	</div>
 </div>
 

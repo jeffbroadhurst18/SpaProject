@@ -4,7 +4,7 @@
 	size: string;
 	price: number;
 	title: string;
-	stockLeve: number;
+	stockLevel: number;
 	filePath: string;
 }
 
