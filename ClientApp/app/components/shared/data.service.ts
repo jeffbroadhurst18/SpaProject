@@ -23,4 +23,23 @@ export class DataService {
 			.map((result: Response) =>
 				this.products = result.json());
 	}
+
+	AddToOrder(product: Product) {
+		let item = this.order.items.find(i => i.productId == product.id);
+
+		if (item) {
+			item.quantity++;
+		}
+		else {
+			item = new OrderItem();
+			item.productCategory = product.category;
+			item.productId = product.id;
+			item.unitPrice = product.price;
+			item.productSize = product.size;
+			item.productTitle = product.title;
+			item.quantity = 1;
+
+			this.order.items.push(item);
+		}
+	}
 }

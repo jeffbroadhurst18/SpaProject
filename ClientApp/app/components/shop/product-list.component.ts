@@ -23,8 +23,8 @@ export class ProductListComponent implements OnInit {
 		})
 	}
 
-	//addProduct(product: Product) {
-	//	this.data.AddToOrder(product);
-	//}
+	addProduct(product: Product) {
+		this.data.AddToOrder(product);
+	}
 
 }

@@ -11,6 +11,7 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { ProductListComponent } from './components/shop/product-list.component';
+import { CartComponent } from './components/shop/cart.component';
 import { DataService } from "./components/shared/data.service";
 
 @NgModule({
@@ -21,7 +22,8 @@ import { DataService } from "./components/shared/data.service";
         FetchDataComponent,
 		HomeComponent,
 		ShopComponent,
-		ProductListComponent
+		ProductListComponent,
+		CartComponent	
     ],
     imports: [
         CommonModule,
