@@ -6,5 +6,11 @@
 	},
 	"ConnectionStrings": {
 		"SpaConnectionString": "Server=BROADHURST_WIN8\\BROADHURST;Database=SpaData;Trusted_Connection=True;MultipleActiveResultSets=true;"
+	},
+	"Tokens": {
+			"Key": "3,G'ALOEAMMsg408$$^%*Jddhnnrr43'';",
+		"Issuer": "localhost",
+		"Audience": "localhost"
+
 	}
 }

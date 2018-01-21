@@ -1,12 +1,15 @@
 ﻿import { Http, Response, Headers } from "@angular/http";
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Product } from "./product";
 import { Order, OrderItem } from "./order";
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class DataService {
+export class DataService implements OnInit {
+	ngOnInit(): void {
+		this.loginRequired = true;
+	}
 
 	constructor(private http: Http) { }
 
@@ -41,5 +44,25 @@ export class DataService {
 
 			this.order.items.push(item);
 		}
+	}
+
+	public get loginRequired(): boolean {
+		return this.token.length == 0 || this.tokenExpiration < new Date();
+	} // Either token doesn't exist or has expired.
+
+	public set loginRequired(data) {
+		if (data == true) {
+			this.token = "";
+		}
+	}
+
+	public login(creds:any) {
+		return this.http.post("/account/createtoken", creds)
+			.map(response => {
+				let tokenInfo = response.json();
+				this.token = tokenInfo.token;
+				this.tokenExpiration = tokenInfo.expiration;
+				return true;
+			})
 	}
 }

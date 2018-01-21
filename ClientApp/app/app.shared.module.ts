@@ -13,6 +13,7 @@ import { ShopComponent } from './components/shop/shop.component';
 import { ProductListComponent } from './components/shop/product-list.component';
 import { CartComponent } from './components/shop/cart.component';
 import { DataService } from "./components/shared/data.service";
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { DataService } from "./components/shared/data.service";
 		HomeComponent,
 		ShopComponent,
 		ProductListComponent,
-		CartComponent	
+		CartComponent,
+		LoginComponent
     ],
     imports: [
         CommonModule,
@@ -35,6 +37,8 @@ import { DataService } from "./components/shared/data.service";
             { path: 'counter', component: CounterComponent },
 			{ path: 'fetch-data', component: FetchDataComponent },
 			{ path: 'the-shop', component: ShopComponent },
+			{ path: 'login', component: LoginComponent },
+			{ path: 'logout', component: LoginComponent },
             { path: '**', redirectTo: 'home' }
         ])
 	],
