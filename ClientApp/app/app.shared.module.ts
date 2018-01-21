@@ -39,6 +39,7 @@ import { LoginComponent } from './components/login/login.component';
 			{ path: 'the-shop', component: ShopComponent },
 			{ path: 'login', component: LoginComponent },
 			{ path: 'logout', component: LoginComponent },
+			{ path: 'checkout', component: CheckoutComponent },
             { path: '**', redirectTo: 'home' }
         ])
 	],
