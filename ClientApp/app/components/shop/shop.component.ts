@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
     templateUrl: './shop.component.html'
 })
 export class ShopComponent {
-	public varvar = "Here we are";
+	
 }

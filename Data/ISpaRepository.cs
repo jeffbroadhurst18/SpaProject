@@ -13,5 +13,7 @@ namespace SpaProject.Data
 		IEnumerable<Product> GetProductByCategory(string category);
 		IEnumerable<Order> GetOrders(bool includeItems);
 		IEnumerable<Order> GetOrdersById(int id);
+		void AddOrder(Order order);
+		bool SaveAll();
 	}
 }

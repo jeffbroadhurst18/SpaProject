@@ -14,6 +14,7 @@ import { ProductListComponent } from './components/shop/product-list.component';
 import { CartComponent } from './components/shop/cart.component';
 import { DataService } from "./components/shared/data.service";
 import { LoginComponent } from './components/login/login.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { LoginComponent } from './components/login/login.component';
 		ShopComponent,
 		ProductListComponent,
 		CartComponent,
-		LoginComponent
+		LoginComponent,
+		CheckoutComponent
     ],
     imports: [
         CommonModule,

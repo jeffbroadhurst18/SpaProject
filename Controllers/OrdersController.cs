@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using AutoMapper;
 using SpaProject.Data.Items;
 using SpaProject.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace SpaProject.Controllers
 {
@@ -19,12 +20,15 @@ namespace SpaProject.Controllers
 		private readonly ISpaRepository _repository;
 		private readonly ILogger<OrdersController> _logger;
 		private readonly IMapper _mapper;
+		private readonly UserManager<StoreUser> _userManager;
 
-		public OrdersController(ISpaRepository repository, ILogger<OrdersController> logger, IMapper mapper)
+		public OrdersController(ISpaRepository repository, ILogger<OrdersController> logger, IMapper mapper,
+			UserManager<StoreUser> userManager)
 		{
 			_repository = repository;
 			_logger = logger;
 			_mapper = mapper;
+			_userManager = userManager;
 		}
 
 		[HttpGet]
@@ -55,6 +59,45 @@ namespace SpaProject.Controllers
 				_logger.LogError($"Failed to get a result {ex.Message}");
 				return BadRequest("Bad Result"); //Returns a 400.
 			}
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Post([FromBody]OrderViewModel model)
+		{
+			//add to db
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					var newOrder = _mapper.Map<OrderViewModel, Order>(model);
+
+					if (newOrder.OrderDate == DateTime.MinValue)
+					{
+						newOrder.OrderDate = DateTime.Now;
+					}
+					// User = list of claims from token. Convertes this to a store user
+					var currentUser = await _userManager.FindByNameAsync(User.Identity.Name);
+					newOrder.User = currentUser;
+
+					//_repository.AddEntity(newOrder);
+					_repository.AddOrder(newOrder);
+					if (_repository.SaveAll())
+					{
+						var vm = _mapper.Map<Order, OrderViewModel>(newOrder);
+						//model.id will be updated after save.
+						return Created($"/api/orders/{vm.OrderId}", vm); //Return 201 code which is created
+					}
+				}
+				else
+				{
+					return BadRequest(ModelState);
+				}
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError($"Failed to save new order - {ex.Message}");
+			}
+			return BadRequest("Post failed");
 		}
 	}
 }

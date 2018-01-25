@@ -1,2 +1,6 @@
-﻿body {
+﻿.product-info img {
+	max-width: 100px;
+	float: left;
+	margin: 0 2px; /*0 at top/bottom 2 left/right*/
+	border: solid 1px #A9A9A9;
 }

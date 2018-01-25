@@ -10,16 +10,16 @@ import { Router } from "@angular/router";
 })
 export class CartComponent {
 
-	loginRequired: boolean = true;
-
 	constructor(private data: DataService, private router: Router) {
-		this.loginRequired = data.loginRequired;
+
 	}
 
-	if(this.loginRequired) {
-		this.router.navigate(["login"]);
-	}
-	else {
-	this.router.navigate(["checkout"]);
+	onCheckout() {
+		if (this.data.loginRequired) {
+			this.router.navigate(["login"]);
+		} else {
+			this.router.navigate(["checkout"]);
+		}
+
 	}
 }

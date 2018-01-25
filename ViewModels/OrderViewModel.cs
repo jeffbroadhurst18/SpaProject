@@ -9,7 +9,7 @@ namespace SpaProject.ViewModels
     public class OrderViewModel
     {
 		[Required]
-		public int Id { get; set; }
+		public int OrderId { get; set; }
 		[Required]
 		public DateTime OrderDate { get; set; }
 		[Required]

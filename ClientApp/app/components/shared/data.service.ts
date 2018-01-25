@@ -40,6 +40,7 @@ export class DataService implements OnInit {
 			item.unitPrice = product.price;
 			item.productSize = product.size;
 			item.productTitle = product.title;
+			item.productFilePath = product.filePath;
 			item.quantity = 1;
 
 			this.order.items.push(item);
@@ -64,5 +65,18 @@ export class DataService implements OnInit {
 				this.tokenExpiration = tokenInfo.expiration;
 				return true;
 			})
+	}
+
+	public checkout() {
+		if (!this.order.orderNumber) {
+			this.order.orderNumber = this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();
+		}
+		return this.http.post("/api/orders", this.order, {
+			headers: new Headers({ "Authorization": "Bearer " + this.token })
+		})
+			.map(response => {
+				this.order = new Order(); //Clears the current Order object
+				return true;
+			});
 	}
 }
