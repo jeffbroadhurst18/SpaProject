@@ -71,6 +71,7 @@ export class DataService implements OnInit {
 		if (!this.order.orderNumber) {
 			this.order.orderNumber = this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();
 		}
+		this.order.orderTotal = this.order.subtotal;
 		return this.http.post("/api/orders", this.order, {
 			headers: new Headers({ "Authorization": "Bearer " + this.token })
 		})

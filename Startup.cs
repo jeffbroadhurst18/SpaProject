@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Identity;
 using SpaProject.Data.Items;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace SpaProject
 {
@@ -34,6 +36,17 @@ namespace SpaProject
 			services.AddIdentity<StoreUser, IdentityRole>(
 				cfg => { cfg.User.RequireUniqueEmail = true; }).
 				AddEntityFrameworkStores<SpaContext>();
+
+			services.AddAuthentication().AddCookie().AddJwtBearer(cfg =>
+			{
+				cfg.TokenValidationParameters = new TokenValidationParameters()
+				{
+					ValidIssuer = _config["Tokens:Issuer"],
+					ValidAudience = _config["Tokens:Audience"],
+					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]))
+				};
+			});
+
 
 			services.AddMvc();
 
@@ -79,7 +92,7 @@ namespace SpaProject
 			using (var scope = app.ApplicationServices.CreateScope())
 			{
 				var seeder = scope.ServiceProvider.GetService<SpaSeeder>();
-				seeder.Seed().Wait(); ; //seeder is async .Wait waits for it to finish without making 
+				seeder.Seed().Wait(); //seeder is async .Wait waits for it to finish without making 
 										// the whole method async.
 			}
 		}

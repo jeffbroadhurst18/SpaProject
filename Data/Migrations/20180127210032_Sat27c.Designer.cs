@@ -8,12 +8,13 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using SpaProject.Data;
 using System;
 
-namespace SpaProject.Migrations
+namespace SpaProject.Data.Migrations
 {
     [DbContext(typeof(SpaContext))]
-    partial class SpaContextModelSnapshot : ModelSnapshot
+    [Migration("20180127210032_Sat27c")]
+    partial class Sat27c
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

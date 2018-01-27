@@ -63,6 +63,7 @@ namespace SpaProject.Data
 				{
 					OrderDate = DateTime.Now,
 					OrderNumber = "12345",
+					Overseas = false,
 					Items = new List<OrderItem>()
 					{
 						new OrderItem {

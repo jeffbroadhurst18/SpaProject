@@ -8,6 +8,11 @@ namespace SpaProject.Data.Items
 {
     public class Order
     {
+		public Order()
+		{
+			Overseas = false;
+		}
+
 		[Required]
 		public int Id { get; set; }
 		[Required]
@@ -15,8 +20,12 @@ namespace SpaProject.Data.Items
 		[Required]
 		public string OrderNumber { get; set; }
 		[Required]
+		public decimal OrderTotal { get; set; }
+		[Required]
 		public ICollection<OrderItem> Items { get; set; }
 		[Required]
 		public StoreUser User { get; set; }
+		[Required]
+		public Boolean Overseas { get; set; }
 	}
 }

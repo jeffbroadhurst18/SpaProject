@@ -8,12 +8,13 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using SpaProject.Data;
 using System;
 
-namespace SpaProject.Migrations
+namespace SpaProject.Data.Migrations
 {
     [DbContext(typeof(SpaContext))]
-    partial class SpaContextModelSnapshot : ModelSnapshot
+    [Migration("20180127191349_Sat27")]
+    partial class Sat27
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,8 +182,6 @@ namespace SpaProject.Migrations
                         .IsRequired();
 
                     b.Property<decimal>("OrderTotal");
-
-                    b.Property<bool>("Overseas");
 
                     b.Property<string>("UserId")
                         .IsRequired();

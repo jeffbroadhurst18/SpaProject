@@ -15,6 +15,8 @@ namespace SpaProject.ViewModels
 		[Required]
 		public string OrderNumber { get; set; }
 		[Required]
+		public decimal OrderTotal { get; set; }
+		[Required]
 		public ICollection<OrderItemViewModel> Items { get; set; }
 	}
 }

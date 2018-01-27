@@ -4,6 +4,7 @@ export class Order {
 	orderId: number;
 	orderDate: Date = new Date();
 	orderNumber: string;
+	orderTotal: number;
 	items: Array<OrderItem> = new Array<OrderItem>();
 
 	get subtotal(): number {

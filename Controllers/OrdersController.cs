@@ -10,12 +10,15 @@ using AutoMapper;
 using SpaProject.Data.Items;
 using SpaProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SpaProject.Controllers
 {
     [Produces("application/json")]
     [Route("api/Orders")]
-    public class OrdersController : Controller
+	[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+	public class OrdersController : Controller
     {
 		private readonly ISpaRepository _repository;
 		private readonly ILogger<OrdersController> _logger;
@@ -70,6 +73,8 @@ namespace SpaProject.Controllers
 				if (ModelState.IsValid)
 				{
 					var newOrder = _mapper.Map<OrderViewModel, Order>(model);
+
+					
 
 					if (newOrder.OrderDate == DateTime.MinValue)
 					{

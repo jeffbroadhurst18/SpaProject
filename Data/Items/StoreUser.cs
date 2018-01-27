@@ -15,5 +15,6 @@ namespace SpaProject.Data.Items
 		public string LastName { get; set; }
 		[Required]
 		public string PersonalIdNumber { get; set; }
+		
 	}
 }
