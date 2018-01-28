@@ -15,6 +15,7 @@ import { CartComponent } from './components/shop/cart.component';
 import { DataService } from "./components/shared/data.service";
 import { LoginComponent } from './components/login/login.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 		ProductListComponent,
 		CartComponent,
 		LoginComponent,
-		CheckoutComponent
+		CheckoutComponent,
+		HistoryComponent
     ],
     imports: [
         CommonModule,
@@ -42,6 +44,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 			{ path: 'login', component: LoginComponent },
 			{ path: 'logout', component: LoginComponent },
 			{ path: 'checkout', component: CheckoutComponent },
+			{ path: 'history', component: HistoryComponent },
             { path: '**', redirectTo: 'home' }
         ])
 	],

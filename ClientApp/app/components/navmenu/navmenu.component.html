@@ -32,6 +32,11 @@
 						<span class='glyphicon glyphicon-th-list'></span> Shop
 					</a>
 				</li>
+				<li [routerLinkActive]="['link-active']">
+					<a [routerLink]="['/history']">
+						<span class='glyphicon glyphicon-th-list'></span> Order History
+					</a>
+				</li>
 				<li [routerLinkActive]="['link-active']" *ngIf="data.loginRequired">
 					<a [routerLink]="['/login']">
 						<span class='glyphicon glyphicon-th-list'></span> Login

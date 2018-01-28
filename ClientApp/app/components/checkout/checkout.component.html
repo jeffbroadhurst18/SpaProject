@@ -17,6 +17,11 @@
 			<td>{{ (o.unitPrice * o.quantity)|currency:"GBP":"symbol-narrow" }}</td>
 		</tr>
 	</table>
+	<div class="overseas">
+		<label>Overseas Address?</label>
+		<input id="overseas" name="overseas" type="checkbox" [(ngModel)]="data.order.overseas" 
+			   (change)="recalculateTotal($event)">
+	</div>
 	<div class="col-md-4 col-md-offset-8 text-right">
 		<table class="table table-condensed">
 			<tr>
@@ -25,14 +30,15 @@
 			</tr>
 			<tr>
 				<td class="text-right">Shipping</td>
-				<td class="text-right">£ 0.00</td>
+				<td class="text-right">{{ data.order.shipping|currency:"GBP":"symbol-narrow" }}</td>
 			</tr>
 			<tr>
 				<td class="text-right">Total:</td>
-				<td class="text-right">{{ data.order.subtotal|currency:"GBP":"symbol-narrow" }}</td>
+				<td class="text-right">{{ data.order.orderTotal|currency:"GBP":"symbol-narrow" }}</td>
 			</tr>
 		</table>
 		<button class="btn btn-success" (click)="onCheckout()">Complete Purchase</button>
 		<a routerLink="/" class="btn btn-info">Cancel</a>
 	</div>
 </div>
+{{data.order.overseas}}

@@ -38,6 +38,7 @@
   </ItemGroup>
     
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\history\history.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\data.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\order.ts" />

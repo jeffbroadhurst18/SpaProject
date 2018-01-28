@@ -24,7 +24,7 @@ export class LoginComponent {
 			.subscribe(success => {
 				if (success) {
 					if (this.data.order.items.length == 0) {
-						this.router.navigate([""]); //if no orders then go to root
+						this.router.navigate(["history"]); //if no orders then go to root
 					} else {
 						this.router.navigate(["checkout"]);
 					}

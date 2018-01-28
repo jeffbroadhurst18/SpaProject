@@ -27,6 +27,11 @@ export class DataService implements OnInit {
 				this.products = result.json());
 	}
 
+	calculateTotal(): void {
+		this.order.shipping = this.order.overseas ? Math.round(this.order.subtotal * 20)/100 : Math.round(this.order.subtotal * 10)/100;
+		this.order.orderTotal = this.order.subtotal + this.order.shipping;
+	}
+
 	AddToOrder(product: Product) {
 		let item = this.order.items.find(i => i.productId == product.id);
 
@@ -71,7 +76,7 @@ export class DataService implements OnInit {
 		if (!this.order.orderNumber) {
 			this.order.orderNumber = this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();
 		}
-		this.order.orderTotal = this.order.subtotal;
+
 		return this.http.post("/api/orders", this.order, {
 			headers: new Headers({ "Authorization": "Bearer " + this.token })
 		})

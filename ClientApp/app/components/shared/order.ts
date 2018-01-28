@@ -5,6 +5,8 @@ export class Order {
 	orderDate: Date = new Date();
 	orderNumber: string;
 	orderTotal: number;
+	overseas: boolean = false;
+	shipping: number;
 	items: Array<OrderItem> = new Array<OrderItem>();
 
 	get subtotal(): number {

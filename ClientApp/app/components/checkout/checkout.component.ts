@@ -7,11 +7,16 @@ import { Router } from "@angular/router";
 	templateUrl: "checkout.component.html",
 	styleUrls: ['./checkout.component.css']
 })
-export class CheckoutComponent {
+export class CheckoutComponent implements OnInit{
+
 	errorMessage: string;
 
 	constructor(private data: DataService, private router: Router) {
 
+	}
+
+	ngOnInit(): void {
+		this.data.calculateTotal();
 	}
 
 	onCheckout() {
@@ -23,5 +28,10 @@ export class CheckoutComponent {
 			}, err => {
 				this.errorMessage = "Failed to save order";
 			})
+	}
+
+	recalculateTotal() {
+		console.log('filter change called');
+		this.data.calculateTotal();
 	}
 }

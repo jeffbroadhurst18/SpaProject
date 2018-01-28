@@ -17,6 +17,8 @@ namespace SpaProject.ViewModels
 		[Required]
 		public decimal OrderTotal { get; set; }
 		[Required]
+		public bool Overseas { get; set; }
+		[Required]
 		public ICollection<OrderItemViewModel> Items { get; set; }
 	}
 }
