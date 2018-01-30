@@ -21,10 +21,20 @@ export class DataService implements OnInit {
 
 	public products: Product[] = [];
 
+	public orderHistory: Order[] = [];
+
+	public userName: string = "";
+
 	loadProducts(): Observable<Product[]> {
 		return this.http.get("/api/products")
 			.map((result: Response) =>
 				this.products = result.json());
+	}
+
+	getOrderHistory(user: string): Observable<Order[]> {
+		return this.http.get("/api/orders/" + this.userName, {
+			headers: new Headers({ "Authorization": "Bearer " + this.token })
+		}).map((result: Response) => this.orderHistory = result.json());
 	}
 
 	calculateTotal(): void {

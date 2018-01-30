@@ -64,6 +64,21 @@ namespace SpaProject.Controllers
 			}
 		}
 
+		[HttpGet("{user}")]
+		public IActionResult Get(string user)
+		{
+			try
+			{
+				var results = _repository.GetOrdersByUser(user);
+				return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(results));
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError($"Failed to get a result {ex.Message}");
+				return BadRequest("Bad Result");
+			}
+		}
+
 		[HttpPost]
 		public async Task<IActionResult> Post([FromBody]OrderViewModel model)
 		{
@@ -83,7 +98,8 @@ namespace SpaProject.Controllers
 					// User = list of claims from token. Convertes this to a store user
 					var currentUser = await _userManager.FindByNameAsync(User.Identity.Name);
 					newOrder.User = currentUser;
-
+					newOrder.OrderNumber = _repository.GetNextOrderId().ToString();
+					TEST THIS
 					//_repository.AddEntity(newOrder);
 					_repository.AddOrder(newOrder);
 					if (_repository.SaveAll())

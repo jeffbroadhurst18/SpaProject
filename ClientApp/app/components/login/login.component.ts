@@ -23,6 +23,7 @@ export class LoginComponent {
 		this.data.login(this.creds)
 			.subscribe(success => {
 				if (success) {
+					this.data.userName = this.creds.username;
 					if (this.data.order.items.length == 0) {
 						this.router.navigate(["history"]); //if no orders then go to root
 					} else {
@@ -36,6 +37,7 @@ export class LoginComponent {
 
 		onLogout() {
 			this.data.loginRequired = true;
+			this.data.userName = "";
 		}
 
 		onCancel() {

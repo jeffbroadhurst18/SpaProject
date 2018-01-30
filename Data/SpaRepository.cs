@@ -114,6 +114,20 @@ namespace SpaProject.Data
 		{
 			return _ctx.SaveChanges() > 0;
 		}
+
+		public IEnumerable<Order> GetOrdersByUser(string user)
+		{
+			return _ctx.Orders.Where(l => l.User.UserName == user);
+		}
+
+		public int GetNextOrderId()
+		{
+			var returnVal = _ctx.Config.FirstOrDefault().NextOrderNumber;
+			var config = _ctx.Config.FirstOrDefault();
+			config.NextOrderNumber = returnVal++;
+			SaveAll();
+			return returnVal;
+		}
 	}
 }
 ;
