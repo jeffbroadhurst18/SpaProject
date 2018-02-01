@@ -47,7 +47,7 @@ namespace SpaProject.Data
 			}
 		}
 
-		public IEnumerable<Product> GetProductByCategory(string category) 
+		public IEnumerable<Product> GetProductByCategory(string category)
 		{
 			try
 			{
@@ -85,7 +85,7 @@ namespace SpaProject.Data
 			{
 				logger.LogInformation("In GetOrders");
 				return _ctx.Orders.Where(i => i.Id == id).Include(i => i.Items)
-					.ThenInclude(p => p.Product).Include(u => u.User)					
+					.ThenInclude(p => p.Product).Include(u => u.User)
 					.OrderByDescending(o => o.OrderDate).ToList();
 			}
 			catch (Exception ex)
@@ -117,14 +117,16 @@ namespace SpaProject.Data
 
 		public IEnumerable<Order> GetOrdersByUser(string user)
 		{
-			return _ctx.Orders.Where(l => l.User.UserName == user);
+			return _ctx.Orders.Where(l => l.User.UserName == user).Include(i => i.Items)
+					.ThenInclude(p => p.Product).Include(u => u.User)
+					.OrderByDescending(x => x.OrderNumber);
 		}
 
 		public int GetNextOrderId()
 		{
 			var returnVal = _ctx.Config.FirstOrDefault().NextOrderNumber;
 			var config = _ctx.Config.FirstOrDefault();
-			config.NextOrderNumber = returnVal++;
+			config.NextOrderNumber = returnVal + 1;
 			SaveAll();
 			return returnVal;
 		}

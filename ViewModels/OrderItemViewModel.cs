@@ -23,5 +23,6 @@ namespace SpaProject.ViewModels
 		public string ProductSize { get; set; }
 		public decimal ProductPrice { get; set; }
 		public string ProductTitle { get; set; }
+		public string ProductFilePath { get; set; }
 	}
 }

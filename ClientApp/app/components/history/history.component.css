@@ -1,10 +1,23 @@
-﻿.product-info img {
+﻿.history-info img {
 	max-width: 100px;
 	float: left;
 	margin: 0 2px; /*0 at top/bottom 2 left/right*/
 	border: solid 1px #A9A9A9;
 }
 
-.overseas {
-	float:left;
+.history-info .history-name {
+	font-size: large;
+	font-weight: bold;
+	float: left;
+	/*width: 100%;*/
+}
+
+.history-item {
+	float: left;
+	width: 20%;
+}
+
+.history-row {
+	float: left;
+	width: 100%;
 }

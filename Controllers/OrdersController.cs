@@ -99,7 +99,7 @@ namespace SpaProject.Controllers
 					var currentUser = await _userManager.FindByNameAsync(User.Identity.Name);
 					newOrder.User = currentUser;
 					newOrder.OrderNumber = _repository.GetNextOrderId().ToString();
-					TEST THIS
+				
 					//_repository.AddEntity(newOrder);
 					_repository.AddOrder(newOrder);
 					if (_repository.SaveAll())
