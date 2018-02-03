@@ -1,7 +1,7 @@
 ﻿.history-info img {
 	max-width: 100px;
 	float: left;
-	margin: 0 2px; /*0 at top/bottom 2 left/right*/
+	margin: 0 2px 0 11px; 
 	border: solid 1px #A9A9A9;
 }
 
@@ -9,7 +9,15 @@
 	font-size: large;
 	font-weight: bold;
 	float: left;
-	/*width: 100%;*/
+	margin-right: 30px;
+}
+
+.history-info .history-name-title {
+	font-size: large;
+	font-weight: bold;
+	float: left;
+	margin-right: 10px;
+	color: darkblue;
 }
 
 .history-item {
@@ -20,4 +28,17 @@
 .history-row {
 	float: left;
 	width: 100%;
+}
+
+.history-page-title {
+	font-size:36px;
+	color: darkred;
+	margin-bottom:10px;
+}
+
+.history-overseas {
+	font-size:smaller;
+	font-weight:bold;
+	font-style:italic;
+	padding-top:2px;
 }
