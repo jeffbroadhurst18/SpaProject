@@ -20,6 +20,7 @@ export class DataService implements OnInit {
 	public order: Order = new Order();
 
 	public products: Product[] = [];
+	public product: Product;
 
 	public orderHistory: Order[] = [];
 
@@ -29,6 +30,12 @@ export class DataService implements OnInit {
 		return this.http.get("/api/products")
 			.map((result: Response) =>
 				this.products = result.json());
+	}
+
+	getProduct(id: number): Observable<Product> {
+		return this.http.get("/api/products/" + id)
+			.map((result: Response) =>
+				this.product = result.json());
 	}
 
 	getOrderHistory(user: string): Observable<Order[]> {

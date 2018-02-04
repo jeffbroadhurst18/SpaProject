@@ -30,6 +30,7 @@ namespace SpaProject.Data
 			_ctx.Database.EnsureCreated();
 
 			var user = await _userManager.FindByEmailAsync("jeffbroadhurst18@outlook.com");
+			var user2 = await _userManager.FindByEmailAsync("tombroadhurst18@outlook.com");
 
 			if (user == null)
 			{
@@ -43,6 +44,25 @@ namespace SpaProject.Data
 				};
 
 				var result = await _userManager.CreateAsync(user, "P@ssw0rd!");
+
+				if (result != IdentityResult.Success)
+				{
+					throw new InvalidOperationException("Failed to create default user");
+				}
+			}
+
+			if (user2 == null)
+			{
+				user2 = new StoreUser
+				{
+					FirstName = "tom",
+					LastName = "broadhurst",
+					UserName = "tom",
+					Email = "tombroadhurst18@outlook.com",
+					PersonalIdNumber = "1001"
+				};
+
+				var result = await _userManager.CreateAsync(user2, "P@ssw0rd!");
 
 				if (result != IdentityResult.Success)
 				{

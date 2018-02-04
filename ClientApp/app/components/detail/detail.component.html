@@ -1,0 +1,24 @@
+﻿<div class="detail-page-title">Order Detail</div>
+<div class="row">
+	{{product.id}}
+	{{product.size}}
+	{{product.price}}
+	<!--<div class="history-info col-md-12 well well-sm" *ngFor="let h of orderHistory">
+			<div class="history-name-title">Order No.</div>
+			<div class="history-name">{{h.orderNumber}}</div>
+			<div class="history-name-title">Date</div>
+			<div class="history-name">{{h.orderDate | date:'dd-MM-yyyy HH:mm'}}</div>
+		    <div class="history-name-title">Total</div>	
+		    <div class="history-name">{{h.orderTotal | currency:"GBP":true}}</div>
+			<div class="history-overseas" *ngIf="h.overseas==true">(Overseas)</div>
+			<div class="row">
+				<div class="history-row" *ngFor="let i of h.items">
+					<img src="/img/{{i.productFilePath}}" class="img-responsive" [alt]="i.productTitle"/>
+					<div class="history-item">{{i.productTitle}}</div>
+					<div class="history-item"><strong>Size: </strong>{{i.productSize}}</div>
+					<div class="history-item"><strong>Quantity: </strong>{{i.quantity}}</div>
+					<div class="history-item"><strong>Price: </strong>{{i.unitPrice | currency:"GBP":true}}</div>
+				</div>
+			</div>
+	</div>-->
+</div>

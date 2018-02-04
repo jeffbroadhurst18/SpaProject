@@ -1,7 +1,7 @@
 ﻿<div class="row">
 	<div class="product-info col-md-4 well well-sm" *ngFor="let p of products">
 		<img src="/img/{{p.filePath}}" class="img-responsive" [alt]="p.title" />
-		<div class="product-name">{{p.title}}</div>
+		<div class="product-name"><a [routerLink]="['/detail',p.id]">{{p.title}}</a></div>
 		<div class="product-item"><strong>Price: </strong>{{p.price | currency:"GBP":true}}</div>
 		<div class="product-item"><strong>Size: </strong>{{p.size}}</div>
 		<div *ngIf="p.stockLevel <= 0" class="sold-out product-item">SOLD OUT</div>
