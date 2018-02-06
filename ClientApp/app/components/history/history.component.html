@@ -10,8 +10,8 @@
 			<div class="history-overseas" *ngIf="h.overseas==true">(Overseas)</div>
 			<div class="row">
 				<div class="history-row" *ngFor="let i of h.items">
-					<img src="/img/{{i.productFilePath}}" class="img-responsive" [alt]="i.productTitle"/>
-					<div class="history-item">{{i.productTitle}}</div>
+					<img src="/img/{{i.productFilePath}}" class="img-responsive" [alt]="i.productTitle" />
+					<div class="history-item"><a [routerLink]="['/detail',i.productId]">{{i.productTitle}}</a></div>
 					<div class="history-item"><strong>Size: </strong>{{i.productSize}}</div>
 					<div class="history-item"><strong>Quantity: </strong>{{i.quantity}}</div>
 					<div class="history-item"><strong>Price: </strong>{{i.unitPrice | currency:"GBP":true}}</div>

@@ -21,5 +21,8 @@ namespace SpaProject.Data.Items
 		public int StockLevel { get; set; }
 
 		public string FilePath { get; set; }
+
+		[MaxLength(500)]
+		public string Description { get; set; }
 	}
 }

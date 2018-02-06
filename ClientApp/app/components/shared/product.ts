@@ -6,5 +6,6 @@
 	title: string;
 	stockLevel: number;
 	filePath: string;
+	description: string;
 }
 

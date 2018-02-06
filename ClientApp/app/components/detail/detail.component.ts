@@ -2,6 +2,7 @@
 import { DataService } from "../shared/data.service";
 import { Router,ActivatedRoute } from "@angular/router";
 import { Product } from "../shared/product";
+import { Location } from '@angular/common';
 
 @Component({
 	selector: "detail",
@@ -14,7 +15,7 @@ export class DetailComponent implements OnInit{
 	product: Product;
 
 	constructor(private data: DataService, private router: Router, 
-		private activatedRoute: ActivatedRoute) {
+		private activatedRoute: ActivatedRoute, private location: Location) {
 
 	}
 
@@ -27,5 +28,8 @@ export class DetailComponent implements OnInit{
 		})
 	}
 
+	onBack() {
+		this.location.back();
+	}
 	
 }

@@ -1,44 +1,26 @@
-﻿.history-info img {
-	max-width: 50px;
+﻿.detail-row img {
+	max-width: 500px;
 	float: left;
-	margin: 0 2px 0 11px; 
+	margin: 0 12px 0 11px; 
 	border: solid 1px #A9A9A9;
 }
 
-.history-info .history-name {
+.detail-page-title {
+	font-size: 36px;
+	color: darkred;
+	margin-bottom: 10px;
+}
+
+.detail-row .detail-item {
 	font-size: large;
 	font-weight: bold;
 	float: left;
 	margin-right: 30px;
+	width:100%;
+	margin-left:11px;
 }
 
-.history-info .history-name-title {
-	font-size: large;
-	font-weight: bold;
-	float: left;
-	margin-right: 10px;
-	color: darkblue;
+.detail-row .detail-description {
+   
 }
 
-.history-item {
-	float: left;
-	width: 20%;
-}
-
-.history-row {
-	float: left;
-	width: 100%;
-}
-
-.history-page-title {
-	font-size:36px;
-	color: darkred;
-	margin-bottom:10px;
-}
-
-.history-overseas {
-	font-size:smaller;
-	font-weight:bold;
-	font-style:italic;
-	padding-top:2px;
-}
