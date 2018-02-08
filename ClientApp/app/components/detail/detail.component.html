@@ -1,7 +1,8 @@
-﻿<div class="detail-page-title">Order Detail</div>
-<div class="row">
+﻿<div class="row" *ngIf="product">
 	<h2>
-		<a (click)="onBack()">&laquo;Back</a>
+		<a class="detail-back" (click)="onBack()">
+			<span class="glyphicon glyphicon-step-backward"></span> Back
+		</a>
 	</h2>
 	<div class="col-md-12 well well-sm detail-row">
 		<div class="detail-item">
@@ -13,7 +14,7 @@
 		<div class="detail-item">
 			Price: {{product.price | currency:"GBP":true}}
 		</div>
-		<img src="/img/big-{{product.filePath}}" class="img-responsive" alt="product.title"/>
+		<img src="/img/big-{{product.filePath}}" class="img-responsive" alt="product.title" />
 		<div class="detail-description">{{product.description}}</div>
 	</div>
 </div>

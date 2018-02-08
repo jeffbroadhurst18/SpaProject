@@ -1,21 +1,23 @@
-﻿<div class="history-page-title">Order History</div>
+﻿<div class="spa-page-title">Order History</div>
 <div class="row">
 	<div class="history-info col-md-12 well well-sm" *ngFor="let h of orderHistory">
-			<div class="history-name-title">Order No.</div>
-			<div class="history-name">{{h.orderNumber}}</div>
-			<div class="history-name-title">Date</div>
-			<div class="history-name">{{h.orderDate | date:'dd-MM-yyyy HH:mm'}}</div>
-		    <div class="history-name-title">Total</div>	
-		    <div class="history-name">{{h.orderTotal | currency:"GBP":true}}</div>
-			<div class="history-overseas" *ngIf="h.overseas==true">(Overseas)</div>
-			<div class="row">
-				<div class="history-row" *ngFor="let i of h.items">
+		<div class="history-name-title">Order No.</div>
+		<div class="history-name">{{h.orderNumber}}</div>
+		<div class="history-name-title">Date</div>
+		<div class="history-name">{{h.orderDate | date:'dd-MM-yyyy HH:mm'}}</div>
+		<div class="history-name-title">Total</div>
+		<div class="history-name">{{h.orderTotal | currency:"GBP":true}}</div>
+		<div class="history-overseas" *ngIf="h.overseas==true">(Overseas)</div>
+		<div class="row">
+			<div class="history-row" *ngFor="let i of h.items">
+				<a [routerLink]="['/detail',i.productId]">
 					<img src="/img/{{i.productFilePath}}" class="img-responsive" [alt]="i.productTitle" />
-					<div class="history-item"><a [routerLink]="['/detail',i.productId]">{{i.productTitle}}</a></div>
-					<div class="history-item"><strong>Size: </strong>{{i.productSize}}</div>
-					<div class="history-item"><strong>Quantity: </strong>{{i.quantity}}</div>
-					<div class="history-item"><strong>Price: </strong>{{i.unitPrice | currency:"GBP":true}}</div>
-				</div>
+				</a>
+				<div class="history-item"><a [routerLink]="['/detail',i.productId]">{{i.productTitle}}</a></div>
+				<div class="history-item"><strong>Size: </strong>{{i.productSize}}</div>
+				<div class="history-item"><strong>Quantity: </strong>{{i.quantity}}</div>
+				<div class="history-item"><strong>Price: </strong>{{i.unitPrice | currency:"GBP":true}}</div>
 			</div>
+		</div>
 	</div>
 </div>

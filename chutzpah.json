@@ -1,0 +1,10 @@
+﻿	{
+		"References": [
+					{ "Path": "ClientApp/app/components/shop/shop.component.spec.ts" }
+		],
+
+		"Tests": [
+			{ "Path": "ClientApp/app/components/shop/shop.component.ts" }
+		]
+	}
+

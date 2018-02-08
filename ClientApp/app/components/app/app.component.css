@@ -4,3 +4,9 @@
         padding-top: 50px;
     }
 }
+
+.spa-page-title {
+	font-size: 36px;
+	color: darkred;
+	margin-bottom: 10px;
+}

@@ -5,12 +5,18 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 
 let fixture: ComponentFixture<ShopComponent>;
 
-describe('Shop component', () => {
-    beforeEach(() => {
-        TestBed.configureTestingModule({ declarations: [ShopComponent] });
-        fixture = TestBed.createComponent(ShopComponent);
-        fixture.detectChanges();
-    });
+describe('Component: ShopComponent', () => {
+	let component: ShopComponent;
 
-    
+	beforeEach(() => {
+		TestBed.configureTestingModule({ declarations: [ShopComponent] });
+		fixture = TestBed.createComponent(ShopComponent);
+		fixture.detectChanges();
+		component = fixture.componentInstance;
+	});
+
+	it('should have a defined compnent', () => {
+		expect(component).toBeDefined();
+	});
+
 });

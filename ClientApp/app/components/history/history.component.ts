@@ -6,7 +6,7 @@ import { Order, OrderItem } from "../shared/order";
 @Component({
 	selector: "history",
 	templateUrl: "history.component.html",
-	styleUrls: ['./history.component.css']
+	styleUrls: ['./history.component.css', '../app/app.component.css']
 })
 export class HistoryComponent implements OnInit{
 
