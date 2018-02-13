@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SpaProject.Data.Items
 {
-    public class Order
-    {
+	public class Order
+	{
 		public Order()
 		{
 			Overseas = false;
@@ -27,5 +27,16 @@ namespace SpaProject.Data.Items
 		public StoreUser User { get; set; }
 		[Required]
 		public Boolean Overseas { get; set; }
+		[Required]
+		public OrderStatusValue Status { get; set; }
 	}
+
+	public enum OrderStatusValue
+	{
+		Pending = 0,
+		Fulfilled = 1,
+		Cancelled = 2
+	}
+
+		
 }

@@ -23,6 +23,7 @@ export class DataService implements OnInit {
 	public product: Product;
 
 	public orderHistory: Order[] = [];
+	public allOrders: Order[] = [];
 
 	public userName: string = "";
 
@@ -42,6 +43,12 @@ export class DataService implements OnInit {
 		return this.http.get("/api/orders/" + this.userName, {
 			headers: new Headers({ "Authorization": "Bearer " + this.token })
 		}).map((result: Response) => this.orderHistory = result.json());
+	}
+
+	getAllOrders(): Observable<Order[]> {
+		return this.http.get("/api/orders/false" + this.userName, {
+			headers: new Headers({ "Authorization": "Bearer " + this.token })
+		}).map((result: Response) => this.allOrders = result.json());
 	}
 
 	calculateTotal(): void {

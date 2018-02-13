@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpaProject.Data.Items;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,5 +21,7 @@ namespace SpaProject.ViewModels
 		public bool Overseas { get; set; }
 		[Required]
 		public ICollection<OrderItemViewModel> Items { get; set; }
+		[Required]
+		public OrderStatusValue OrderStatus { get; set; }
 	}
 }

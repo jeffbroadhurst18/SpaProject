@@ -34,7 +34,7 @@ namespace SpaProject.Controllers
 			_userManager = userManager;
 		}
 
-		[HttpGet]
+		[HttpGet("{includeItems:bool}")]
 		public IActionResult Get(bool includeItems = true)
 		{
 			try

@@ -15,6 +15,7 @@ namespace SpaProject.Data
 		{
 			CreateMap<Order, OrderViewModel>()
 				.ForMember(o => o.OrderId, ex => ex.MapFrom(o => o.Id))
+				.ForMember(o => o.OrderStatus, ex => ex.MapFrom(o => o.Status))
 				.ReverseMap();
 
 			CreateMap<OrderItem, OrderItemViewModel>()

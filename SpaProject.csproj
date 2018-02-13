@@ -29,6 +29,7 @@
     
   <ItemGroup>
     <None Remove="ClientApp\app\components\login\login.component.ts" />
+    <None Remove="ClientApp\app\components\process\process.component.ts" />
     <None Remove="ClientApp\app\components\shared\data.service.ts" />
     <None Remove="ClientApp\app\components\shared\order.ts" />
     <None Remove="ClientApp\app\components\shared\product.ts" />
@@ -40,6 +41,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\history\history.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\process\process.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\data.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\order.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\product.ts" />
