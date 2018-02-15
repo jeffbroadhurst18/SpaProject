@@ -66,11 +66,12 @@ namespace SpaProject.Data
 			try
 			{
 				logger.LogInformation("In GetOrders");
+
 				if (includeItems)
 				{
-					return _ctx.Orders.Include(i => i.Items).ThenInclude(v => v.Product).OrderByDescending(o => o.OrderDate).ToList();
+					return _ctx.Orders.Include(u => u.User).Include(i => i.Items).ThenInclude(v => v.Product).OrderByDescending(o => o.OrderDate).ToList();
 				}
-				return _ctx.Orders.OrderByDescending(o => o.OrderDate).ToList();
+				return _ctx.Orders.Include(u => u.User).OrderByDescending(o => o.OrderDate).ToList();
 			}
 			catch (Exception ex)
 			{

@@ -37,6 +37,4 @@ namespace SpaProject.Data.Items
 		Fulfilled = 1,
 		Cancelled = 2
 	}
-
-		
 }

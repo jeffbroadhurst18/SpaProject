@@ -1,4 +1,4 @@
-﻿<div class="spa-page-title">Order History</div>
+﻿<div class="spa-page-title">Order Processing</div>
 <div class="row">
 	<div class="history-info col-md-12 well well-sm" *ngFor="let h of allOrders">
 		<div class="history-name-title">Order No.</div>
@@ -7,7 +7,8 @@
 		<div class="history-name">{{h.orderDate | date:'dd-MM-yyyy HH:mm'}}</div>
 		<div class="history-name-title">Total</div>
 		<div class="history-name">{{h.orderTotal | currency:"GBP":true}}</div>
-		<div class="history-overseas" *ngIf="h.overseas==true">(Overseas)</div>
+		<!--<div class="history-overseas" *ngIf="h.overseas==true">(Overseas)</div>-->
 		<div class="history-name">{{h.orderStatus}}</div>
+		<div class="history-name">{{h.userName}}</div>
 	</div>
 </div>

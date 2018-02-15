@@ -23,5 +23,7 @@ namespace SpaProject.ViewModels
 		public ICollection<OrderItemViewModel> Items { get; set; }
 		[Required]
 		public OrderStatusValue OrderStatus { get; set; }
+		//[Required]
+		public string UserName { get; set; }
 	}
 }

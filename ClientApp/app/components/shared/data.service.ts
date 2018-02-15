@@ -46,7 +46,7 @@ export class DataService implements OnInit {
 	}
 
 	getAllOrders(): Observable<Order[]> {
-		return this.http.get("/api/orders/false" + this.userName, {
+		return this.http.get("/api/orders/false", {
 			headers: new Headers({ "Authorization": "Bearer " + this.token })
 		}).map((result: Response) => this.allOrders = result.json());
 	}

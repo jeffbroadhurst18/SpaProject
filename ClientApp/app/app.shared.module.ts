@@ -17,6 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HistoryComponent } from './components/history/history.component';
 import { DetailComponent } from './components/detail/detail.component';
+import { ProcessComponent } from './components/process/process.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { DetailComponent } from './components/detail/detail.component';
 		LoginComponent,
 		CheckoutComponent,
 		HistoryComponent,
-		DetailComponent
+		DetailComponent,
+		ProcessComponent
     ],
     imports: [
         CommonModule,
@@ -48,6 +50,7 @@ import { DetailComponent } from './components/detail/detail.component';
 			{ path: 'checkout', component: CheckoutComponent },
 			{ path: 'history', component: HistoryComponent },
 			{ path: 'detail/:id', component: DetailComponent },
+			{ path: 'process', component: ProcessComponent },
             { path: '**', redirectTo: 'home' }
         ])
 	],

@@ -40,6 +40,13 @@ namespace SpaProject.Controllers
 			try
 			{
 				var results = _repository.GetOrders(includeItems);
+				var userList = _userManager.Users;
+
+				foreach(var result in results)
+				{
+					result.User = userList.Where(u => u.Id == result.User.Id).FirstOrDefault();
+				}
+
 				return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(results));
 			}
 			catch (Exception ex)
@@ -88,9 +95,7 @@ namespace SpaProject.Controllers
 				if (ModelState.IsValid)
 				{
 					var newOrder = _mapper.Map<OrderViewModel, Order>(model);
-
 					
-
 					if (newOrder.OrderDate == DateTime.MinValue)
 					{
 						newOrder.OrderDate = DateTime.Now;

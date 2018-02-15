@@ -8,6 +8,7 @@ export class Order {
 	overseas: boolean = false;
 	shipping: number;
 	items: Array<OrderItem> = new Array<OrderItem>();
+	userName: string;
 
 	get subtotal(): number {
 		return _.sum(_.map(this.items, i => i.unitPrice * i.quantity));
