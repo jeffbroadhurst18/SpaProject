@@ -1,4 +1,8 @@
-﻿.history-info img {
+﻿.history-table {
+	margin-right:15px;
+}
+
+.history-info img {
 	max-width: 50px;
 	float: left;
 	margin: 0 2px 0 11px; 

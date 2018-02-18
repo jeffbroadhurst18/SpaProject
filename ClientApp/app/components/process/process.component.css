@@ -1,4 +1,14 @@
-﻿.history-info img {
+﻿.history-table {
+	margin-right: 15px;
+}
+
+.history-row {
+	background-color: lightgreen;
+	border: 1px solid darkgreen;
+}
+
+
+.history-info img {
 	max-width: 50px;
 	float: left;
 	margin: 0 2px 0 11px; 
@@ -6,17 +16,16 @@
 }
 
 .history-info .history-name {
-	font-size: large;
+	font-size: 14px;
 	font-weight: bold;
 	float: left;
-	margin-right: 30px;
+	margin-top: 8px;
 }
 
 .history-info .history-name-title {
-	font-size: large;
+	font-size: 14px;
 	font-weight: bold;
 	float: left;
-	margin-right: 10px;
 	color: darkblue;
 }
 
@@ -42,4 +51,25 @@
 	font-weight:bold;
 	font-style:italic;
 	padding-top:2px;
+}
+
+html, body {
+	height: 100%
+}
+
+#holder {
+	min-height: 100%;
+	position: relative;
+}
+
+.process-body {
+	height:200px;
+}
+
+.process-footer {
+	height: 200px;
+	width: 100%;
+	background-color:lightgrey;
+	display:inline-block;
+	margin-left:-15px;
 }

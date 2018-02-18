@@ -86,6 +86,21 @@ namespace SpaProject.Controllers
 			}
 		}
 
+		[HttpGet("orderitems/{id:int}")]
+		public IActionResult GetOrderItems(int id)
+		{
+			try
+			{
+				var results = _repository.GetOrderItems(id);
+				return Ok(_mapper.Map<IEnumerable<OrderItem>, IEnumerable<OrderItemViewModel>>(results));
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError($"Failed to get a result {ex.Message}");
+				return BadRequest("Bad Result");
+			}
+		}
+
 		[HttpPost]
 		public async Task<IActionResult> Post([FromBody]OrderViewModel model)
 		{

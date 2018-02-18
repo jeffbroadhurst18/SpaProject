@@ -2,6 +2,7 @@
     /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
     .body-content {
         padding-top: 50px;
+		background-image: url('/img/bark.jpg');
     }
 }
 
@@ -9,4 +10,11 @@
 	font-size: 36px;
 	color: darkred;
 	margin-bottom: 10px;
+}
+
+.spa-app {
+	background: url(/img/bark.jpg) no-repeat center center fixed;
+	background-size: cover;
+	background-color: lightgreen;
+	height:100vh;
 }

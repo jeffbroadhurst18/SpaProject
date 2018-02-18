@@ -2,6 +2,8 @@
 import { DataService } from "../shared/data.service";
 import { Router } from "@angular/router";
 import { Order, OrderItem } from "../shared/order";
+import { TransformStatusPipe } from "./process.component.pipe"
+import { Location } from '@angular/common';
 
 @Component({
 	selector: "process",
@@ -14,7 +16,8 @@ export class ProcessComponent implements OnInit{
 
 	allOrders: Order[];
 
-	constructor(private data: DataService, private router: Router) {
+	constructor(private data: DataService, private router: Router,
+				private location: Location) {
 
 	}
 

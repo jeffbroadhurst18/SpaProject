@@ -17,5 +17,6 @@ namespace SpaProject.Data
 		bool SaveAll();
 		IEnumerable<Order> GetOrdersByUser(string user);
 		int GetNextOrderId();
+		IEnumerable<OrderItem> GetOrderItems(int id);
 	}
 }

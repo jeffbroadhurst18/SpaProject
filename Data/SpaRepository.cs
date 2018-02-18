@@ -96,6 +96,8 @@ namespace SpaProject.Data
 			}
 		}
 
+		
+
 		public void AddOrder(Order order)
 		{
 			//Convert new product to lookup of product
@@ -130,6 +132,13 @@ namespace SpaProject.Data
 			config.NextOrderNumber = returnVal + 1;
 			SaveAll();
 			return returnVal;
+		}
+
+		public IEnumerable<OrderItem> GetOrderItems(int id)
+		{
+			var order = _ctx.Orders.Where(i => i.Id == id).Include(t => t.Items).ThenInclude(p => p.Product)
+				.FirstOrDefault();
+			return order.Items;
 		}
 	}
 }

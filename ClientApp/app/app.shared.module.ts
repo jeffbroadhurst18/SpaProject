@@ -18,6 +18,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HistoryComponent } from './components/history/history.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { ProcessComponent } from './components/process/process.component';
+import { TransformStatusPipe } from "./components/process/process.component.pipe"
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { ProcessComponent } from './components/process/process.component';
 		CheckoutComponent,
 		HistoryComponent,
 		DetailComponent,
-		ProcessComponent
+		ProcessComponent,
+		TransformStatusPipe
     ],
     imports: [
         CommonModule,

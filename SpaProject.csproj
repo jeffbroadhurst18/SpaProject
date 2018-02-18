@@ -29,6 +29,8 @@
     
   <ItemGroup>
     <None Remove="ClientApp\app\components\login\login.component.ts" />
+    <None Remove="ClientApp\app\components\processdetail\processdetail.component.ts" />
+    <None Remove="ClientApp\app\components\process\process.component.pipe.ts" />
     <None Remove="ClientApp\app\components\process\process.component.ts" />
     <None Remove="ClientApp\app\components\shared\data.service.ts" />
     <None Remove="ClientApp\app\components\shared\order.ts" />
@@ -41,6 +43,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\history\history.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\processdetail\processdetail.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\process\process.component.pipe.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\process\process.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\data.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\order.ts" />
@@ -48,10 +52,6 @@
     <TypeScriptCompile Include="ClientApp\app\components\shop\cart.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\checkout\checkout.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shop\product-list.component.ts" />
-  </ItemGroup>
-    
-  <ItemGroup>
-    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
