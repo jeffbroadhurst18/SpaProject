@@ -19,7 +19,8 @@
 	font-size: 14px;
 	font-weight: bold;
 	float: left;
-	margin-top: 8px;
+	margin-top: 4px;
+	margin-bottom: 4px;
 }
 
 .history-info .history-name-title {
@@ -62,7 +63,7 @@ html, body {
 	position: relative;
 }
 
-.process-body {
+/*.process-body {
 	height:200px;
 }
 
@@ -72,4 +73,34 @@ html, body {
 	background-color:lightgrey;
 	display:inline-block;
 	margin-left:-15px;
+}*/
+
+#container {
+	min-height: 100%;
+}
+
+body, html, #container {
+	height: 100%;
+}
+
+.process-body {
+	height: 50%;
+	width: 100%;
+	background-color: lightgreen;
+	margin: auto;
+	text-align: center;
+}
+
+.process-footer {
+	height: 50%;
+	width: 100%;
+	background-color: white;
+	/*margin: auto;*/
+	text-align: center;
+	color: black;
+	border:solid 5px red;
+}
+
+.process-name-row:hover {
+	background-color:lightgray;
 }

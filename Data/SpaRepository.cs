@@ -136,8 +136,7 @@ namespace SpaProject.Data
 
 		public IEnumerable<OrderItem> GetOrderItems(int id)
 		{
-			var order = _ctx.Orders.Where(i => i.Id == id).Include(t => t.Items).ThenInclude(p => p.Product)
-				.FirstOrDefault();
+			var order = _ctx.Orders.Where(i => i.Id == id).Include(t => t.Items).ThenInclude(p => p.Product).FirstOrDefault();
 			return order.Items;
 		}
 	}

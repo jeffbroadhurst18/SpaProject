@@ -1,1 +1,4 @@
-﻿<div>Process Detail</div>
+﻿<div class="row process-detail-row" *ngFor="let o of orderItems">
+	<div class="col-md-2">{{o.productCategory}}</div>
+	<div class="col-md-2">{{o.productSize}}</div>
+</div>

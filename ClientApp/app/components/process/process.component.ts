@@ -15,6 +15,7 @@ export class ProcessComponent implements OnInit{
 	errorMessage: string;
 
 	allOrders: Order[];
+	detailOrderItems: OrderItem[];
 
 	constructor(private data: DataService, private router: Router,
 				private location: Location) {
@@ -33,5 +34,12 @@ export class ProcessComponent implements OnInit{
 		})
 	}
 
+	showDetail(orderId: number) {
+		this.data.getOrderItems(orderId).subscribe(success => {
+			if (success) {
+				this.detailOrderItems = this.data.orderItems;
+			}
+		})
+	}
 	
 }

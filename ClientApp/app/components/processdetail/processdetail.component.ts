@@ -28,7 +28,9 @@ export class ProcessDetailComponent implements OnInit{
 
 	}
 
-	//Comment
+	ngDoCheck() {
+		this.orderItems = this.data.orderItems;
+	}
 
 	
 }

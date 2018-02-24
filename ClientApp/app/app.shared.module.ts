@@ -18,6 +18,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HistoryComponent } from './components/history/history.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { ProcessComponent } from './components/process/process.component';
+import { ProcessDetailComponent } from './components/processdetail/processdetail.component';
 import { TransformStatusPipe } from "./components/process/process.component.pipe"
 
 @NgModule({
@@ -35,6 +36,7 @@ import { TransformStatusPipe } from "./components/process/process.component.pipe
 		HistoryComponent,
 		DetailComponent,
 		ProcessComponent,
+		ProcessDetailComponent,
 		TransformStatusPipe
     ],
     imports: [
@@ -53,6 +55,7 @@ import { TransformStatusPipe } from "./components/process/process.component.pipe
 			{ path: 'history', component: HistoryComponent },
 			{ path: 'detail/:id', component: DetailComponent },
 			{ path: 'process', component: ProcessComponent },
+			{ path: 'processdetail', component: ProcessDetailComponent },
             { path: '**', redirectTo: 'home' }
         ])
 	],
