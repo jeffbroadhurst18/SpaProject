@@ -93,14 +93,18 @@ body, html, #container {
 
 .process-footer {
 	height: 50%;
-	width: 100%;
+	width: 50%;
 	background-color: white;
-	/*margin: auto;*/
+	margin: 50px -15px;
 	text-align: center;
 	color: black;
-	border:solid 5px red;
+	border:solid 1px black;
 }
 
 .process-name-row:hover {
 	background-color:lightgray;
+}
+
+.row-selected {
+	background-color: lightgray;
 }

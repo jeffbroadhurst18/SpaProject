@@ -1,4 +1,8 @@
 ﻿<div class="row process-detail-row" *ngFor="let o of orderItems">
-	<div class="col-md-2">{{o.productCategory}}</div>
-	<div class="col-md-2">{{o.productSize}}</div>
+	<div class="col-md-2 process-detail-item"><img src="/img/{{o.productFilePath}}" class="img-responsive" [alt]="o.productTitle" /></div>
+	<div class="col-md-3 process-detail-item">{{o.productTitle}}</div>
+	<div class="col-md-2 process-detail-item">{{o.unitPrice | currency:"GBP":true}}</div>
+	<div class="col-md-2 process-detail-item">{{o.productSize}}</div>
 </div>
+
+

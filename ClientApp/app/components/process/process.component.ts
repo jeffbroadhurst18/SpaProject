@@ -30,6 +30,9 @@ export class ProcessComponent implements OnInit{
 		this.data.getAllOrders().subscribe(success => {
 			if (success) {
 				this.allOrders = this.data.allOrders;
+				if (this.allOrders.length > 0) {
+					this.showDetail(this.allOrders[0].orderId);
+				}
 			}
 		})
 	}
