@@ -58,6 +58,16 @@ export class DataService implements OnInit {
 		}).map((result: Response) => this.orderItems = result.json());
 	}
 
+	setStatus(selectedOrder: Order, newStatus: number) {
+		selectedOrder.orderStatus = newStatus;
+		return this.http.post("/api/orderstatus", selectedOrder, {
+			headers: new Headers({ "Authorization": "Bearer " + this.token })
+		})
+			.map(response => {
+				return true;
+			});
+	}
+
 	calculateTotal(): void {
 		this.order.shipping = this.order.overseas ? Math.round(this.order.subtotal * 20)/100 : Math.round(this.order.subtotal * 10)/100;
 		this.order.orderTotal = this.order.subtotal + this.order.shipping;

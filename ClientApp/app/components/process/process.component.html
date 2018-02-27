@@ -2,25 +2,26 @@
 	<div class="process-body">
 		<div class="spa-page-title">Order Processing</div>
 		<div class="row history-table">
-			<div class="history-info col-md-12 well well-sm">
+			<div class="process-info col-md-12 well well-sm">
 				<div class="row">
-					<div class="col-md-2 history-name-title">Order No.</div>
-					<div class="col-md-2 history-name-title">Date</div>
-					<div class="col-md-1 history-name-title">Total</div>
-					<div class="col-md-1 history-name-title">User Id</div>
-					<div class="col-md-1 history-name-title">Order Status</div>
-					<div class="col-md-5 history-name-title"></div>
+					<div class="col-md-1 process-name-title">Order No.</div>
+					<div class="col-md-2 process-name-title">Date</div>
+					<div class="col-md-1 process-name-title">Total</div>
+					<div class="col-md-1 process-name-title">User Id</div>
+					<div class="col-md-1 process-name-title">Order Status</div>
+					<div class="col-md-4 process-name-title"></div>
 				</div>
-				<div class="row process-name-row" *ngFor="let h of allOrders" (mouseover)="showDetail(h.orderId)">
-					<div class="col-md-2 history-name">{{h.orderNumber}}</div>
-					<div class="col-md-2 history-name">{{h.orderDate | date:'dd-MM-yyyy HH:mm'}}</div>
-					<div class="col-md-1 history-name">{{h.orderTotal | currency:"GBP":true}}</div>
-					<div class="col-md-1 history-name">{{h.userName}}</div>
-					<div class="col-md-1 history-name">{{h.orderStatus | transformStatus}}</div>
-					<div class="col-md-5 history-name">
-					<button class="btn btn-primary btn-sm">Complete</button>
-					<button class="btn btn-primary btn-sm">Cancel</button>
-					<button class="btn btn-primary btn-sm">Pend</button>
+				<div class="row process-name-row" *ngFor="let h of allOrders" (mouseover)="setSelected(h.orderId)"
+					 [class.row-selected]="selectedOrderId==h.orderId">
+					<div class="col-md-1 process-name">{{h.orderNumber}}</div>
+					<div class="col-md-2 process-name">{{h.orderDate | date:'dd-MM-yyyy HH:mm'}}</div>
+					<div class="col-md-1 process-name">{{h.orderTotal | currency:"GBP":true}}</div>
+					<div class="col-md-1 process-name">{{h.userName}}</div>
+					<div class="col-md-1 process-name">{{h.orderStatus | transformStatus}}</div>
+					<div class="col-md-4">
+						<button class="btn btn-primary btn-sm btn-process" *ngIf="h.orderStatus != 2" (click)="setStatus(h,2)">Complete</button>
+						<button class="btn btn-primary btn-sm btn-process" *ngIf="h.orderStatus != 1" (click)="setStatus(h,1)">Cancel</button>
+						<button class="btn btn-primary btn-sm btn-process" *ngIf="h.orderStatus != 0" (click)="setStatus(h,0)">Pend</button>
 					</div>
 				</div>
 			</div>

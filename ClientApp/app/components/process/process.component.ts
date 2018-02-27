@@ -16,6 +16,7 @@ export class ProcessComponent implements OnInit{
 
 	allOrders: Order[];
 	detailOrderItems: OrderItem[];
+	selectedOrderId: number;
 
 	constructor(private data: DataService, private router: Router,
 				private location: Location) {
@@ -31,7 +32,7 @@ export class ProcessComponent implements OnInit{
 			if (success) {
 				this.allOrders = this.data.allOrders;
 				if (this.allOrders.length > 0) {
-					this.showDetail(this.allOrders[0].orderId);
+					this.setSelected(this.allOrders[0].orderId);
 				}
 			}
 		})
@@ -44,5 +45,19 @@ export class ProcessComponent implements OnInit{
 			}
 		})
 	}
-	
+
+	setSelected(orderId:number) {
+		this.selectedOrderId = orderId;
+		this.showDetail(orderId);
+	}
+
+	setStatus(selectedOrder: Order, newStatus: number) {
+		this.data.setStatus(selectedOrder, newStatus).subscribe(success => {
+			if (success) {
+				for (let order of this.allOrders) {
+					if (order.orderId == selectedOrder.orderId) {
+						order.orderStatus = newStatus;
+			}
+		}
+	}
 }

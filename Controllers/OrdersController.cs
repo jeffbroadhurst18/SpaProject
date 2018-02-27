@@ -140,5 +140,13 @@ namespace SpaProject.Controllers
 			}
 			return BadRequest("Post failed");
 		}
+
+		[HttpPost("setstatus")]
+		public async Task<IActionResult> SetStatus([FromBody]OrderViewModel model)
+		{
+			var updatedOrder = Mapper.Map<OrderViewModel, Order>(model);
+			_repository.SaveOrder()
+				//TODO finish this
+		}
 	}
 }
