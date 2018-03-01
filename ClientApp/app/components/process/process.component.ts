@@ -17,7 +17,7 @@ export class ProcessComponent implements OnInit{
 	allOrders: Order[];
 	detailOrderItems: OrderItem[];
 	selectedOrderId: number;
-
+	
 	constructor(private data: DataService, private router: Router,
 				private location: Location) {
 
@@ -54,10 +54,11 @@ export class ProcessComponent implements OnInit{
 	setStatus(selectedOrder: Order, newStatus: number) {
 		this.data.setStatus(selectedOrder, newStatus).subscribe(success => {
 			if (success) {
-				for (let order of this.allOrders) {
-					if (order.orderId == selectedOrder.orderId) {
-						order.orderStatus = newStatus;
+				let amendedOrder = this.allOrders.find(a => a.orderId == selectedOrder.orderId);
+				if (amendedOrder) {
+					amendedOrder.orderStatus = newStatus;
+				}
 			}
-		}
+		})
 	}
 }

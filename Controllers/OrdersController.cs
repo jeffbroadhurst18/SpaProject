@@ -142,11 +142,25 @@ namespace SpaProject.Controllers
 		}
 
 		[HttpPost("setstatus")]
-		public async Task<IActionResult> SetStatus([FromBody]OrderViewModel model)
+		public IActionResult SetStatus([FromBody]OrderViewModel model)
 		{
-			var updatedOrder = Mapper.Map<OrderViewModel, Order>(model);
-			_repository.SaveOrder()
-				//TODO finish this
+			try
+			{
+				var updatedOrder = Mapper.Map<OrderViewModel, Order>(model);
+
+				var retrievedOrder = _repository.GetOrdersById(updatedOrder.Id).FirstOrDefault();
+				retrievedOrder.Status = updatedOrder.Status;
+
+				_repository.SaveOrder(retrievedOrder);
+				
+				return Ok(model);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError($"Failed to update status on order - {ex.Message}");
+			}
+			return BadRequest("Post Failed");
+				
 		}
 	}
 }

@@ -139,6 +139,12 @@ namespace SpaProject.Data
 			var order = _ctx.Orders.Where(i => i.Id == id).Include(t => t.Items).ThenInclude(p => p.Product).FirstOrDefault();
 			return order.Items;
 		}
+
+		public void SaveOrder(Order updatedOrder)
+		{
+			_ctx.Update(updatedOrder);
+			SaveAll();
+		}
 	}
 }
 ;

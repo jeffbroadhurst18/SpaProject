@@ -19,8 +19,8 @@
 					<div class="col-md-1 process-name">{{h.userName}}</div>
 					<div class="col-md-1 process-name">{{h.orderStatus | transformStatus}}</div>
 					<div class="col-md-4">
-						<button class="btn btn-primary btn-sm btn-process" *ngIf="h.orderStatus != 2" (click)="setStatus(h,2)">Complete</button>
-						<button class="btn btn-primary btn-sm btn-process" *ngIf="h.orderStatus != 1" (click)="setStatus(h,1)">Cancel</button>
+						<button class="btn btn-primary btn-sm btn-process" *ngIf="h.orderStatus != 1" (click)="setStatus(h,1)">Complete</button>
+						<button class="btn btn-primary btn-sm btn-process" *ngIf="h.orderStatus != 2" (click)="setStatus(h,2)">Cancel</button>
 						<button class="btn btn-primary btn-sm btn-process" *ngIf="h.orderStatus != 0" (click)="setStatus(h,0)">Pend</button>
 					</div>
 				</div>

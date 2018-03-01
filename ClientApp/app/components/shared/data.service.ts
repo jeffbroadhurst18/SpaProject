@@ -60,7 +60,7 @@ export class DataService implements OnInit {
 
 	setStatus(selectedOrder: Order, newStatus: number) {
 		selectedOrder.orderStatus = newStatus;
-		return this.http.post("/api/orderstatus", selectedOrder, {
+		return this.http.post("/api/orders/setstatus", selectedOrder, {
 			headers: new Headers({ "Authorization": "Bearer " + this.token })
 		})
 			.map(response => {
