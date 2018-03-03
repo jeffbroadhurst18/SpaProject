@@ -1,7 +1,7 @@
 ﻿.detail-row img {
 	max-width: 500px;
 	float: left;
-	margin: 0 12px 0 11px; 
+	margin: 0 12px 0 11px;
 	border: solid 1px #A9A9A9;
 }
 
@@ -20,12 +20,32 @@
 	margin-left:11px;
 }
 
-.detail-row .detail-description {
-   
+.detail-row {
+	margin-right: 11px;
+	background-color: dodgerblue;
 }
 
 .detail-back {
 	font-size: 24px;
 	cursor:pointer;
+	color:blue;
 }
 
+/*body, html {
+	height: 100% !important;
+	background-color: dodgerblue;
+	margin:0 !important;
+}*/
+
+.detail-row {
+	height:100% !important;
+	margin-bottom:110px;
+}
+
+/*#container {
+	min-height: 100% !important;
+	height: auto !important;
+	height: 100% !important;
+	margin: 0px;
+	padding: 0px;
+}*/

@@ -17,3 +17,9 @@ width:500px;
 	float:left;
 	text-align:left;
 }
+
+.process-detail-title {
+	float: left;
+	text-align: left;
+	font-weight:bold;
+}

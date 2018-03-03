@@ -1,5 +1,10 @@
 ﻿.history-table {
 	margin-right:15px;
+	background-color:dodgerblue;
+}
+
+.history-info {
+	background-color:dodgerblue;
 }
 
 .history-info img {
@@ -46,4 +51,8 @@
 	font-weight:bold;
 	font-style:italic;
 	padding-top:2px;
+}
+
+.history-item a {
+	color:darkblue;
 }

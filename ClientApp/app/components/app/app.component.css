@@ -2,7 +2,7 @@
     /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
     .body-content {
         padding-top: 50px;
-		background-image: url('/img/bark.jpg');
+		/*background-image: url('/img/bark.jpg');*/
     }
 }
 
@@ -13,8 +13,9 @@
 }
 
 .spa-app {
-	background: url(/img/bark.jpg) no-repeat center center fixed;
-	background-size: cover;
-	background-color: lightgreen;
-	height:100vh;
+	/*background: url(/img/bark.jpg) no-repeat center center fixed;*/
+	/*background-size:auto;*/
+	background-color: dodgerblue;
+	min-height:100%;
+	/*height:100vh;*/
 }

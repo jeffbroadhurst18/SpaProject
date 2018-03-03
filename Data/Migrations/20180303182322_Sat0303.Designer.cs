@@ -9,12 +9,13 @@ using SpaProject.Data;
 using SpaProject.Data.Items;
 using System;
 
-namespace SpaProject.Migrations
+namespace SpaProject.Data.Migrations
 {
     [DbContext(typeof(SpaContext))]
-    partial class SpaContextModelSnapshot : ModelSnapshot
+    [Migration("20180303182322_Sat0303")]
+    partial class Sat0303
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -95,9 +95,7 @@ namespace SpaProject.Data
 				return null;
 			}
 		}
-
 		
-
 		public void AddOrder(Order order)
 		{
 			//Convert new product to lookup of product
@@ -105,7 +103,17 @@ namespace SpaProject.Data
 			{
 				item.Product = _ctx.Products.Find(item.Product.Id);
 			}
+			order.CreatedOn = DateTime.Now;
+			order.ModifiedOn = DateTime.Now;
 			AddEntity(order);
+
+			//Subtract the order from stock levels
+			foreach (var item in order.Items)
+			{
+				var product = _ctx.Products.Where(p => p.Id == item.Product.Id).FirstOrDefault();
+				product.StockLevel = product.StockLevel - item.Quantity;
+				_ctx.Update(product);
+			}
 		}
 
 		public void AddEntity(object model)
@@ -136,12 +144,14 @@ namespace SpaProject.Data
 
 		public IEnumerable<OrderItem> GetOrderItems(int id)
 		{
-			var order = _ctx.Orders.Where(i => i.Id == id).Include(t => t.Items).ThenInclude(p => p.Product).FirstOrDefault();
+			var order = _ctx.Orders.Where(i => i.Id == id).Include(t => t.Items)
+				.ThenInclude(p => p.Product).FirstOrDefault();
 			return order.Items;
 		}
 
 		public void SaveOrder(Order updatedOrder)
 		{
+			updatedOrder.ModifiedOn = DateTime.Now;
 			_ctx.Update(updatedOrder);
 			SaveAll();
 		}

@@ -29,12 +29,17 @@ namespace SpaProject.Data.Items
 		public Boolean Overseas { get; set; }
 		[Required]
 		public OrderStatusValue Status { get; set; }
+
+		public DateTime CreatedOn { get; set; }
+
+		public DateTime ModifiedOn { get; set; }
 	}
 
 	public enum OrderStatusValue
 	{
 		Pending = 0,
 		Fulfilled = 1,
-		Cancelled = 2
+		Cancelled = 2,
+		Returned = 3
 	}
 }

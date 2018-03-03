@@ -1,4 +1,8 @@
-﻿.product-info img {
+﻿.product-info {
+	background-color:dodgerblue;
+}
+
+.product-info img {
 	max-width: 100px;
 	float: left;
 	margin: 0 2px; /*0 at top/bottom 2 left/right*/
@@ -10,6 +14,10 @@
 	font-weight: bold;
 	float:left;
 	width:100%;
+}
+
+.product-name a {
+	color: blue;
 }
 
 .product-item {

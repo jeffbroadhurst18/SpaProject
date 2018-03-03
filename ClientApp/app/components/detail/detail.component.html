@@ -1,20 +1,22 @@
-﻿<div class="row" *ngIf="product">
-	<h2>
-		<a class="detail-back" (click)="onBack()">
-			<span class="glyphicon glyphicon-step-backward"></span> Back
-		</a>
-	</h2>
-	<div class="col-md-12 well well-sm detail-row">
-		<div class="detail-item">
-			Product: {{product.title}}
+﻿<div id="container">
+	<div class="row detail-row" *ngIf="product">
+		<h2>
+			<a class="detail-back" (click)="onBack()">
+				<span class="glyphicon glyphicon-step-backward"></span> Back
+			</a>
+		</h2>
+		<div class="col-md-12 well well-sm detail-row">
+			<div class="detail-item">
+				Product: {{product.title}}
+			</div>
+			<div class="detail-item">
+				Size: {{product.size}}
+			</div>
+			<div class="detail-item">
+				Price: {{product.price | currency:"GBP":true}}
+			</div>
+			<img src="/img/big-{{product.filePath}}" class="img-responsive" alt="product.title" />
+			<div class="detail-description">{{product.description}}</div>
 		</div>
-		<div class="detail-item">
-			Size: {{product.size}}
-		</div>
-		<div class="detail-item">
-			Price: {{product.price | currency:"GBP":true}}
-		</div>
-		<img src="/img/big-{{product.filePath}}" class="img-responsive" alt="product.title" />
-		<div class="detail-description">{{product.description}}</div>
 	</div>
 </div>
