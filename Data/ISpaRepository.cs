@@ -1,12 +1,9 @@
 ﻿using SpaProject.Data.Items;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SpaProject.Data
 {
-    public interface ISpaRepository
+	public interface ISpaRepository
     {
 		IEnumerable<Product> GetAllProducts();
 		Product GetProductById(int id);
@@ -18,6 +15,6 @@ namespace SpaProject.Data
 		IEnumerable<Order> GetOrdersByUser(string user);
 		int GetNextOrderId();
 		IEnumerable<OrderItem> GetOrderItems(int id);
-		void SaveOrder(Order updatedOrder);
+		Order UpdateOrder(Order order);
 	}
 }

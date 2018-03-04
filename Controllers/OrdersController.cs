@@ -15,11 +15,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SpaProject.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Orders")]
+	[Produces("application/json")]
+	[Route("api/Orders")]
 	[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 	public class OrdersController : Controller
-    {
+	{
 		private readonly ISpaRepository _repository;
 		private readonly ILogger<OrdersController> _logger;
 		private readonly IMapper _mapper;
@@ -42,7 +42,7 @@ namespace SpaProject.Controllers
 				var results = _repository.GetOrders(includeItems);
 				var userList = _userManager.Users;
 
-				foreach(var result in results)
+				foreach (var result in results)
 				{
 					result.User = userList.Where(u => u.Id == result.User.Id).FirstOrDefault();
 				}
@@ -110,7 +110,7 @@ namespace SpaProject.Controllers
 				if (ModelState.IsValid)
 				{
 					var newOrder = _mapper.Map<OrderViewModel, Order>(model);
-					
+
 					if (newOrder.OrderDate == DateTime.MinValue)
 					{
 						newOrder.OrderDate = DateTime.Now;
@@ -119,8 +119,7 @@ namespace SpaProject.Controllers
 					var currentUser = await _userManager.FindByNameAsync(User.Identity.Name);
 					newOrder.User = currentUser;
 					newOrder.OrderNumber = _repository.GetNextOrderId().ToString();
-				
-					//_repository.AddEntity(newOrder);
+
 					_repository.AddOrder(newOrder);
 					if (_repository.SaveAll())
 					{
@@ -150,17 +149,20 @@ namespace SpaProject.Controllers
 
 				var retrievedOrder = _repository.GetOrdersById(updatedOrder.Id).FirstOrDefault();
 				retrievedOrder.Status = updatedOrder.Status;
+				retrievedOrder = _repository.UpdateOrder(retrievedOrder);
 
-				_repository.SaveOrder(retrievedOrder);
-				
-				return Ok(model);
+				if (_repository.SaveAll())
+				{
+					var vm = _mapper.Map<Order, OrderViewModel>(retrievedOrder);
+					return Ok(vm); //Return 200
+				}
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError($"Failed to update status on order - {ex.Message}");
 			}
 			return BadRequest("Post Failed");
-				
+
 		}
 	}
 }

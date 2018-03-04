@@ -70,6 +70,10 @@ body, html, #container {
 	height: 100%;
 }
 
+.order-button {
+	float:left;
+}
+
 .process-body {
 	height: 50%;
 	width: 100%;

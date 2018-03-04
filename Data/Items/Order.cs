@@ -38,7 +38,7 @@ namespace SpaProject.Data.Items
 	public enum OrderStatusValue
 	{
 		Pending = 0,
-		Fulfilled = 1,
+		Completed = 1,
 		Cancelled = 2,
 		Returned = 3
 	}

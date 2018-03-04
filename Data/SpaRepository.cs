@@ -110,10 +110,34 @@ namespace SpaProject.Data
 			//Subtract the order from stock levels
 			foreach (var item in order.Items)
 			{
-				var product = _ctx.Products.Where(p => p.Id == item.Product.Id).FirstOrDefault();
+				var product = _ctx.Products.Find(item.Product.Id);
+				if (product == null) { return; }
 				product.StockLevel = product.StockLevel - item.Quantity;
 				_ctx.Update(product);
 			}
+		}
+
+		public Order UpdateOrder(Order order)
+		{
+			order.ModifiedOn = DateTime.Now;
+			_ctx.Update(order);
+
+			if (order.Status == OrderStatusValue.Completed) { return order; }
+
+			foreach (var item in order.Items)
+			{
+				var product = _ctx.Products.Find(item.Product.Id);
+				if (product == null) { return order; }
+				switch (order.Status)
+				{
+					case OrderStatusValue.Cancelled:
+					case OrderStatusValue.Returned:
+						product.StockLevel = product.StockLevel + item.Quantity;
+						break;
+				}
+				_ctx.Update(product);
+			}
+			return order;
 		}
 
 		public void AddEntity(object model)
@@ -148,13 +172,5 @@ namespace SpaProject.Data
 				.ThenInclude(p => p.Product).FirstOrDefault();
 			return order.Items;
 		}
-
-		public void SaveOrder(Order updatedOrder)
-		{
-			updatedOrder.ModifiedOn = DateTime.Now;
-			_ctx.Update(updatedOrder);
-			SaveAll();
-		}
 	}
 }
-;
