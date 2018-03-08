@@ -4,20 +4,20 @@
 		<div class="row history-table">
 			<div class="process-info col-md-12 well well-sm">
 				<div class="row">
-					<div class="col-md-1 process-name-title">Order No.</div>
-					<div class="col-md-2 process-name-title">Date</div>
+					<div class="col-md-1 process-name-title">Order</div>
+					<div class="col-md-3 process-name-title">Date</div>
 					<div class="col-md-1 process-name-title">Total</div>
-					<div class="col-md-1 process-name-title">User Id</div>
-					<div class="col-md-1 process-name-title">Order Status</div>
+					<div class="col-md-1 process-name-title">User</div>
+					<div class="col-md-2 process-name-title">Status</div>
 					<div class="col-md-4 process-name-title"></div>
 				</div>
 				<div class="row process-name-row" *ngFor="let h of allOrders" (mouseover)="setSelected(h.orderId)"
 					 [class.row-selected]="selectedOrderId==h.orderId">
 					<div class="col-md-1 process-name">{{h.orderNumber}}</div>
-					<div class="col-md-2 process-name">{{h.orderDate | date:'dd-MM-yyyy HH:mm'}}</div>
+					<div class="col-md-3 process-name">{{h.orderDate | date:'dd-MM-yyyy HH:mm'}}</div>
 					<div class="col-md-1 process-name">{{h.orderTotal | currency:"GBP":true}}</div>
 					<div class="col-md-1 process-name">{{h.userName}}</div>
-					<div class="col-md-1 process-name">{{h.orderStatus | transformStatus}}</div>
+					<div class="col-md-2 process-name">{{h.orderStatus | transformStatus}}</div>
 					<div class="col-md-4">
 						<button class="btn btn-primary btn-sm btn-process order-button" *ngIf="h.orderStatus == 0" (click)="setStatus(h,1)">Complete</button>
 						<button class="btn btn-primary btn-sm btn-process order-button" *ngIf="h.orderStatus == 0" (click)="setStatus(h,2)">Cancel</button>

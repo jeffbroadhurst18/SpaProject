@@ -11,14 +11,14 @@ using NLog.Web;
 
 namespace SpaProject
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-			var logger = NLog.LogManager.LoadConfiguration("NLog.config").GetCurrentClassLogger();
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
+			var logger = NLog.LogManager.LoadConfiguration("nlog.config").GetCurrentClassLogger();
 			try
 			{
-				logger.Debug("init main");
+				logger.Debug("Initialising Main");
 				BuildWebHost(args).Run();
 			}
 			catch (Exception e)
@@ -29,11 +29,15 @@ namespace SpaProject
 			}
 		}
 
-        public static IWebHost BuildWebHost(string[] args) =>
+		public static IWebHost BuildWebHost(string[] args) =>
 		   WebHost.CreateDefaultBuilder(args)
-		   .ConfigureAppConfiguration(SetupConfiguration)
-			   .UseStartup<Startup>().UseNLog()
-		   			   .Build();
+			   .ConfigureAppConfiguration(SetupConfiguration)
+			   .UseStartup<Startup>().ConfigureLogging(logging =>
+			  {
+				  logging.ClearProviders();
+				  logging.SetMinimumLevel(LogLevel.Trace);
+			  }).UseNLog().Build();
+
 
 		private static void SetupConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder builder)
 		{

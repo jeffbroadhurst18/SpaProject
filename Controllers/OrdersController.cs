@@ -39,6 +39,7 @@ namespace SpaProject.Controllers
 		{
 			try
 			{
+				_logger.LogTrace("Calling Get");
 				var results = _repository.GetOrders(includeItems);
 				var userList = _userManager.Users;
 
@@ -61,6 +62,7 @@ namespace SpaProject.Controllers
 		{
 			try
 			{
+				_logger.LogTrace("Calling Get with Id");
 				var results = _repository.GetOrdersById(id);
 				return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(results));
 			}
@@ -76,6 +78,7 @@ namespace SpaProject.Controllers
 		{
 			try
 			{
+				_logger.LogTrace("Calling Get for User");
 				var results = _repository.GetOrdersByUser(user);
 				return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(results));
 			}
@@ -91,6 +94,7 @@ namespace SpaProject.Controllers
 		{
 			try
 			{
+				_logger.LogTrace("Calling GetOrderItems");
 				var results = _repository.GetOrderItems(id);
 				return Ok(_mapper.Map<IEnumerable<OrderItem>, IEnumerable<OrderItemViewModel>>(results));
 			}
@@ -109,6 +113,7 @@ namespace SpaProject.Controllers
 			{
 				if (ModelState.IsValid)
 				{
+					_logger.LogTrace("Calling Post");
 					var newOrder = _mapper.Map<OrderViewModel, Order>(model);
 
 					if (newOrder.OrderDate == DateTime.MinValue)
@@ -145,6 +150,7 @@ namespace SpaProject.Controllers
 		{
 			try
 			{
+				_logger.LogTrace("Calling SetStatus");
 				var updatedOrder = Mapper.Map<OrderViewModel, Order>(model);
 
 				var retrievedOrder = _repository.GetOrdersById(updatedOrder.Id).FirstOrDefault();

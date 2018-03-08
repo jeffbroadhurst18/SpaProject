@@ -27,12 +27,14 @@
 	margin-bottom: 4px;
 	line-height:20px;
 	padding-top:4px;
+	text-align:left;
 }
 
 .process-info .process-name-title {
 	font-size: 14px;
 	font-weight: bold;
 	float: left;
+	text-align:left;
 	color: darkblue;
 }
 
@@ -84,12 +86,12 @@ body, html, #container {
 
 .process-footer {
 	height: 50%;
-	width: 50%;
+	width: 60%;
 	background-color: dodgerblue;
 	margin: 50px -15px 50px 10px;
 	text-align: center;
 	color: black;
-	border:solid 1px black;
+	border: solid 1px #A9A9A9;
 }
 
 .process-name-row:hover {
