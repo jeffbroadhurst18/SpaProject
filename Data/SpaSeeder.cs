@@ -15,14 +15,37 @@ namespace SpaProject.Data
 		private readonly SpaContext _ctx;
 		private readonly IHostingEnvironment _hosting;
 		private readonly UserManager<StoreUser> _userManager;
+		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly ISpaRepository _repository;
 
-		public SpaSeeder(SpaContext ctx, IHostingEnvironment hosting, UserManager<StoreUser> userManager, ISpaRepository repository)
+		public SpaSeeder(SpaContext ctx, IHostingEnvironment hosting, UserManager<StoreUser> userManager, ISpaRepository repository, RoleManager<IdentityRole> roleManager)
 		{
 			_ctx = ctx;
 			_hosting = hosting;
 			_userManager = userManager;
 			_repository = repository;
+			_roleManager = roleManager;
+		}
+
+		public async Task SeedAddRole()
+		{
+			var user = await _userManager.FindByEmailAsync("jeffbroadhurst18@outlook.com");
+
+			// first we create Admin rool    
+			var role = new IdentityRole();
+			role.Name = "Admin";
+			await _roleManager.CreateAsync(role);
+
+			var result1 = await _userManager.AddToRoleAsync(user, "Admin");
+
+			user = await _userManager.FindByEmailAsync("tombroadhurst18@outlook.com");
+
+			// first we create Admin rool    
+			role = new IdentityRole();
+			role.Name = "User";
+			await _roleManager.CreateAsync(role);
+
+			result1 = await _userManager.AddToRoleAsync(user, "User");
 		}
 
 		public async Task Seed()

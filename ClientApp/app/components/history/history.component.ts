@@ -13,6 +13,7 @@ export class HistoryComponent implements OnInit{
 	errorMessage: string;
 
 	orderHistory: Order[];
+	role: string;
 
 	constructor(private data: DataService, private router: Router) {
 
@@ -22,6 +23,7 @@ export class HistoryComponent implements OnInit{
 		if (this.data.loginRequired) {
 			this.router.navigate(["login"]);
 		}
+		this.role = this.data.role;
 		this.data.getOrderHistory(this.data.userName).subscribe(success => {
 			if (success) {
 				this.orderHistory = this.data.orderHistory;

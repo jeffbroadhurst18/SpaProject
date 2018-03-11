@@ -18,7 +18,8 @@ export class LoginComponent {
 	errorMessage: string = "";
 	public creds = {
 		username: "",
-		password: ""
+		password: "",
+		role: ""
 	};
 
 		onLogin() {
@@ -26,11 +27,12 @@ export class LoginComponent {
 			.subscribe(success => {
 				if (success) {
 					this.data.userName = this.creds.username;
-					//if (this.data.order.items.length == 0) {
-					//	this.router.navigate(["history"]); //if no orders then go to root
-					//} else {
-					//	this.router.navigate(["checkout"]);
-					//}
+
+					this.data.getRole(this.creds.username)
+						.subscribe(success => {
+							this.creds.role = this.data.role;
+						})
+
 					this.location.back();
 				} 
 			},

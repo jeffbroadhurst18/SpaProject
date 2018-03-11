@@ -17,10 +17,11 @@ export class ProcessComponent implements OnInit{
 	allOrders: Order[];
 	detailOrderItems: OrderItem[];
 	selectedOrderId: number;
+	sortOrder: string;
 	
 	constructor(private data: DataService, private router: Router,
 				private location: Location) {
-
+		this.sortOrder = "totalAsc";
 	}
 
 	ngOnInit(): void {
@@ -30,13 +31,28 @@ export class ProcessComponent implements OnInit{
 		
 		this.data.getAllOrders().subscribe(success => {
 			if (success) {
-				this.allOrders = this.data.allOrders;
+
+				this.allOrders = this.returnSortedOrders(this.sortOrder);
+
 				if (this.allOrders.length > 0) {
 					this.setSelected(this.allOrders[0].orderId);
 				}
 			}
 		})
 	}
+
+	returnSortedOrders(sortOrder: string): Order[] 
+		{
+		switch (sortOrder) {
+			case "totalAsc":
+				return this.data.allOrders.sort((n1, n2) => n1.orderTotal - n2.orderTotal);
+			case "totalDesc":
+				return this.data.allOrders.sort((n1, n2) => n2.orderTotal - n1.orderTotal);
+			default:
+				return this.data.allOrders.sort((n1, n2) => n1.orderTotal - n2.orderTotal);
+		}
+	}
+
 
 	showDetail(orderId: number) {
 		this.data.getOrderItems(orderId).subscribe(success => {
@@ -60,5 +76,21 @@ export class ProcessComponent implements OnInit{
 				}
 			}
 		})
+	}
+
+	sortByTotal() {
+		switch (this.sortOrder) {
+			case "totalAsc":
+				this.sortOrder = "totalDesc";
+				break;
+			case "totalDesc":
+				this.sortOrder = "totalAsc";
+				break;
+			default:
+				this.sortOrder = "totalAsc";
+		}
+
+
+		this.allOrders = this.returnSortedOrders(this.sortOrder);
 	}
 }

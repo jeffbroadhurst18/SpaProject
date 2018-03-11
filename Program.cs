@@ -35,7 +35,7 @@ namespace SpaProject
 			   .UseStartup<Startup>().ConfigureLogging(logging =>
 			  {
 				  logging.ClearProviders();
-				  logging.SetMinimumLevel(LogLevel.Trace);
+				  logging.SetMinimumLevel(LogLevel.Debug);
 			  }).UseNLog().Build();
 
 

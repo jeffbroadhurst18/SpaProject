@@ -38,7 +38,7 @@
 						<span class='glyphicon glyphicon-th-list'></span> Order History
 					</a>
 				</li>
-				<li [routerLinkActive]="['link-active']">
+				<li [routerLinkActive]="['link-active']" *ngIf="isAdmin">
 					<a [routerLink]="['/process']">
 						<span class='glyphicon glyphicon-th-list'></span> Order Processing
 					</a>

@@ -110,3 +110,7 @@ body, html, #container {
 	background-color:lightgray;
 	color:black;
 	}
+
+.process-selectable {
+	cursor:pointer
+}

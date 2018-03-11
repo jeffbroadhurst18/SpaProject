@@ -93,7 +93,9 @@ namespace SpaProject
 			{
 				var seeder = scope.ServiceProvider.GetService<SpaSeeder>();
 				seeder.Seed().Wait(); //seeder is async .Wait waits for it to finish without making 
-										// the whole method async.
+				// the whole method async.
+				
+				//seeder.SeedAddRole().Wait();
 			}
 		}
     }
