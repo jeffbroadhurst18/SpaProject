@@ -7,6 +7,18 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0</DefineConstants>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\netcoreapp2.0\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0</DefineConstants>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\netcoreapp2.0\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.2.2" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
@@ -30,6 +42,7 @@
   </ItemGroup>
     
   <ItemGroup>
+    <None Remove="ClientApp\app\components\login\create.user.component.ts" />
     <None Remove="ClientApp\app\components\login\login.component.ts" />
     <None Remove="ClientApp\app\components\processdetail\processdetail.component.ts" />
     <None Remove="ClientApp\app\components\process\process.component.pipe.ts" />
@@ -37,6 +50,7 @@
     <None Remove="ClientApp\app\components\shared\data.service.ts" />
     <None Remove="ClientApp\app\components\shared\order.ts" />
     <None Remove="ClientApp\app\components\shared\product.ts" />
+    <None Remove="ClientApp\app\components\shared\User.ts" />
     <None Remove="ClientApp\app\components\shop\cart.component.ts" />
     <None Remove="ClientApp\app\components\shop\checkout.component.ts" />
     <None Remove="ClientApp\app\components\shop\product-list.component.ts" />
@@ -44,6 +58,7 @@
     
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\history\history.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\login\create.user.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\processdetail\processdetail.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\process\process.component.pipe.ts" />
@@ -51,6 +66,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\shared\data.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\order.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\product.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\user.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shop\cart.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\checkout\checkout.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shop\product-list.component.ts" />

@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 export class LoginComponent {
 
 	constructor(private data: DataService, private router: Router,
-				private location:Location) {
+		private location: Location) {
 
 	}
 
@@ -22,7 +22,7 @@ export class LoginComponent {
 		role: ""
 	};
 
-		onLogin() {
+	onLogin() {
 		this.data.login(this.creds)
 			.subscribe(success => {
 				if (success) {
@@ -34,18 +34,20 @@ export class LoginComponent {
 						})
 
 					this.location.back();
-				} 
+				}
 			},
-			err => this.errorMessage = "Failed to Login");
-			//Two way binding is reflected on the form.
+			err => {
+			this.errorMessage = "Failed to Login";
+			});
+		//Two way binding is reflected on the form.
 	}
 
-		onLogout() {
-			this.data.loginRequired = true;
-			this.data.userName = "";
-		}
+	onLogout() {
+		this.data.loginRequired = true;
+		this.data.userName = "";
+	}
 
-		onCancel() {
-			this.router.navigate([""]);
-		}
+	onCancel() {
+		this.router.navigate([""]);
+	}
 }

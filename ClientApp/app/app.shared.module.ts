@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
@@ -19,6 +19,7 @@ import { HistoryComponent } from './components/history/history.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { ProcessComponent } from './components/process/process.component';
 import { ProcessDetailComponent } from './components/processdetail/processdetail.component';
+import { CreateUserComponent } from './components/login/create.user.component';
 import { TransformStatusPipe } from "./components/process/process.component.pipe"
 
 @NgModule({
@@ -37,12 +38,14 @@ import { TransformStatusPipe } from "./components/process/process.component.pipe
 		DetailComponent,
 		ProcessComponent,
 		ProcessDetailComponent,
-		TransformStatusPipe
+		CreateUserComponent,
+		TransformStatusPipe,
     ],
     imports: [
         CommonModule,
         HttpModule,
-        FormsModule,
+		FormsModule,
+		ReactiveFormsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
@@ -56,6 +59,7 @@ import { TransformStatusPipe } from "./components/process/process.component.pipe
 			{ path: 'detail/:id', component: DetailComponent },
 			{ path: 'process', component: ProcessComponent },
 			{ path: 'processdetail', component: ProcessDetailComponent },
+			{ path: 'createuser', component: CreateUserComponent },
             { path: '**', redirectTo: 'home' }
         ])
 	],

@@ -34,15 +34,6 @@ namespace SpaProject.Controllers
 			_userManager = userManager;
 		}
 
-		[HttpGet("getrole/{user}")]
-		public async Task<IActionResult> GetRole(string user)
-		{
-			StoreUser storeUser = await _userManager.FindByNameAsync(user);
-			var roles  = await _userManager.GetRolesAsync(storeUser);
-			return Ok(roles.First());
-		}
-
-
 		[HttpGet("{includeItems:bool}")]
 		public IActionResult Get(bool includeItems = true)
 		{

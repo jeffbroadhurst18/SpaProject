@@ -2,6 +2,7 @@
 import { Injectable, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Product } from "./product";
+import { User } from "./user";
 import { Order, OrderItem } from "./order";
 import 'rxjs/add/operator/map';
 
@@ -115,11 +116,17 @@ export class DataService implements OnInit {
 	}
 
 	public getRole(user: string) {
-		return this.http.get("/api/orders/getrole/" + user, {
+		return this.http.get("/api/user/getrole/" + user, {
 			headers: new Headers({ "Authorization": "Bearer " + this.token })
 		})
 			.map((result: Response) =>
 				this.role = result.json());
+	}
+
+	public addUser(user: User) {
+		return this.http.post("/api/user" + JSON.stringify(user), {
+			headers: new Headers({ "Authorization": "Bearer " + this.token })
+		}).map((response: Response) => response.json());
 	}
 
 	public checkout() {
