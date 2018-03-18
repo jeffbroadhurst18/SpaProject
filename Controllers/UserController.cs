@@ -20,11 +20,11 @@ namespace SpaProject.Controllers
     public class UserController : Controller
     {
 		private ISpaRepository _repository;
-		private ILogger<OrdersController> _logger;
+		private ILogger<UserController> _logger;
 		private IMapper _mapper;
 		private UserManager<StoreUser> _userManager;
 
-		public UserController(ISpaRepository repository, ILogger<OrdersController> logger, IMapper mapper,
+		public UserController(ISpaRepository repository, ILogger<UserController> logger, IMapper mapper,
 			UserManager<StoreUser> userManager)
 		{
 			_repository = repository;
@@ -42,22 +42,38 @@ namespace SpaProject.Controllers
 			return Ok(roles.First());
 		}
 
-		[HttpPost()]
-		public async Task<IActionResult> Add([FromBody] UserViewModel uvm)
+		[HttpPost]
+		public async Task<IActionResult> Post([FromBody] UserViewModel uvm)
 		{
-			StoreUser storeUser = await _userManager.FindByNameAsync(uvm.UserName);
-			if (storeUser != null) { throw new Exception("Username already exists"); }
-
-			storeUser = await _userManager.FindByEmailAsync(uvm.EmailAddress);
-			if (storeUser != null) { throw new Exception("Username already exists"); }
-
-			storeUser = new StoreUser()
+			try
 			{
-				UserName = uvm.UserName,
-				Email = uvm.EmailAddress,
-			};
+				StoreUser storeUser = await _userManager.FindByNameAsync(uvm.UserName);
+				if (storeUser != null) { throw new Exception("Username already exists"); }
 
-			var result = await _userManager.CreateAsync(storeUser, "P@ssw0rd!");
+				storeUser = await _userManager.FindByEmailAsync(uvm.EmailAddress);
+
+				StoreUser lastUser = _repository.GetLastUser();
+
+				if (storeUser != null) { throw new Exception("Username already exists"); }
+
+				storeUser = new StoreUser()
+				{
+					FirstName = uvm.FirstName,
+					LastName = uvm.LastName,
+					UserName = uvm.UserName,
+					Email = uvm.EmailAddress,
+					PersonalIdNumber =  (int.Parse(lastUser.PersonalIdNumber.ToString()) + 1).ToString()
+				};
+
+				//Default the password to this value.
+				var result = await _userManager.CreateAsync(storeUser, "P@ssw0rd!");
+				return Ok(result);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError($"Error in UserController: {ex}");
+				return BadRequest(ex.ToString());
+			}
 		}
 	}
 }

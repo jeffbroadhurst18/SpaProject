@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using SpaProject.Data.Items;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SpaProject.Data
 {
@@ -171,6 +172,12 @@ namespace SpaProject.Data
 			var order = _ctx.Orders.Where(i => i.Id == id).Include(t => t.Items)
 				.ThenInclude(p => p.Product).FirstOrDefault();
 			return order.Items;
+		}
+
+		public StoreUser GetLastUser()
+		{
+			var lastuser = _ctx.Users.OrderByDescending(o => o.PersonalIdNumber).FirstOrDefault();
+			return lastuser;
 		}
 	}
 }

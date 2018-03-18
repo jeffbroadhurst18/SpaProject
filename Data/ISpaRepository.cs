@@ -1,4 +1,5 @@
-﻿using SpaProject.Data.Items;
+﻿using Microsoft.AspNetCore.Mvc;
+using SpaProject.Data.Items;
 using System.Collections.Generic;
 
 namespace SpaProject.Data
@@ -16,5 +17,6 @@ namespace SpaProject.Data
 		int GetNextOrderId();
 		IEnumerable<OrderItem> GetOrderItems(int id);
 		Order UpdateOrder(Order order);
+		StoreUser GetLastUser();
 	}
 }

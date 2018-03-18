@@ -124,7 +124,7 @@ export class DataService implements OnInit {
 	}
 
 	public addUser(user: User) {
-		return this.http.post("/api/user" + JSON.stringify(user), {
+		return this.http.post("/api/user", user, {
 			headers: new Headers({ "Authorization": "Bearer " + this.token })
 		}).map((response: Response) => response.json());
 	}
