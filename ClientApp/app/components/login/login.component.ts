@@ -45,6 +45,8 @@ export class LoginComponent {
 	onLogout() {
 		this.data.loginRequired = true;
 		this.data.userName = "";
+		this.data.role = "User";
+		//logout
 	}
 
 	onCancel() {

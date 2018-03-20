@@ -19,6 +19,8 @@ export class ProcessComponent implements OnInit{
 	selectedOrderId: number;
 	sortOrder: string;
 	
+	selectedOption: string;
+	
 	constructor(private data: DataService, private router: Router,
 				private location: Location) {
 		this.sortOrder = "totalAsc";
@@ -28,7 +30,13 @@ export class ProcessComponent implements OnInit{
 		if (this.data.loginRequired) {
 			this.router.navigate(["login"]);
 		}
-		
+
+		let options = [
+			{ name: "option1", value: 1 },
+			{ name: "option2", value: 2 }
+		]
+		this.selectedOption = options[0].name;
+
 		this.data.getAllOrders().subscribe(success => {
 			if (success) {
 
@@ -48,6 +56,10 @@ export class ProcessComponent implements OnInit{
 				return this.data.allOrders.sort((n1, n2) => n1.orderTotal - n2.orderTotal);
 			case "totalDesc":
 				return this.data.allOrders.sort((n1, n2) => n2.orderTotal - n1.orderTotal);
+			case "dateAsc":
+				return this.data.allOrders.sort((n1, n2) => Date.parse(n1.orderDate.toString()) - Date.parse(n2.orderDate.toString());
+			case "dateDesc":
+				return this.data.allOrders.sort((n1, n2) => Date.parse(n2.orderDate.toString()) - Date.parse(n1.orderDate.toString());
 			default:
 				return this.data.allOrders.sort((n1, n2) => n1.orderTotal - n2.orderTotal);
 		}
@@ -89,8 +101,20 @@ export class ProcessComponent implements OnInit{
 			default:
 				this.sortOrder = "totalAsc";
 		}
+		this.allOrders = this.returnSortedOrders(this.sortOrder);
+	}
 
-
+	sortByDate() {
+		switch (this.sortOrder) {
+			case "dateAsc":
+				this.sortOrder = "dateDesc";
+				break;
+			case "dateDesc":
+				this.sortOrder = "dateAsc";
+				break;
+			default:
+				this.sortOrder = "dateAsc";
+		}
 		this.allOrders = this.returnSortedOrders(this.sortOrder);
 	}
 }

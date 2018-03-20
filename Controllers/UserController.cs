@@ -23,14 +23,16 @@ namespace SpaProject.Controllers
 		private ILogger<UserController> _logger;
 		private IMapper _mapper;
 		private UserManager<StoreUser> _userManager;
+		private readonly RoleManager<IdentityRole> _roleManager;
 
 		public UserController(ISpaRepository repository, ILogger<UserController> logger, IMapper mapper,
-			UserManager<StoreUser> userManager)
+			UserManager<StoreUser> userManager,RoleManager<IdentityRole> roleManager)
 		{
 			_repository = repository;
 			_logger = logger;
 			_mapper = mapper;
 			_userManager = userManager;
+			this._roleManager = roleManager;
 		}
 		
 		[HttpGet("getrole/{user}")]
@@ -67,6 +69,8 @@ namespace SpaProject.Controllers
 
 				//Default the password to this value.
 				var result = await _userManager.CreateAsync(storeUser, "P@ssw0rd!");
+
+				await _userManager.AddToRoleAsync(storeUser, "User");
 				return Ok(result);
 			}
 			catch (Exception ex)
