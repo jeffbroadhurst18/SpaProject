@@ -114,3 +114,7 @@ body, html, #container {
 .process-selectable {
 	cursor:pointer
 }
+
+.filter-key {
+	width:500px;
+}

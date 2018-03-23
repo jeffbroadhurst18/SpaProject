@@ -18,8 +18,9 @@ export class ProcessComponent implements OnInit{
 	detailOrderItems: OrderItem[];
 	selectedOrderId: number;
 	sortOrder: string;
+	options: Object[];
 	
-	selectedOption: string;
+	selectedOption: number;
 	
 	constructor(private data: DataService, private router: Router,
 				private location: Location) {
@@ -31,11 +32,11 @@ export class ProcessComponent implements OnInit{
 			this.router.navigate(["login"]);
 		}
 
-		let options = [
+		this.options = [
 			{ name: "option1", value: 1 },
 			{ name: "option2", value: 2 }
-		]
-		this.selectedOption = options[0].name;
+		];
+		//this.selectedOption = options[0].name;
 
 		this.data.getAllOrders().subscribe(success => {
 			if (success) {

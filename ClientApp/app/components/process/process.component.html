@@ -1,11 +1,11 @@
 ﻿<div id="container">
 	<div class="process-body">
 		<div class="spa-page-title">Order Processing</div>
-		<select class="filterKey">
-			<option *ngFor="let opt of options" 
-					name="selectedOption" [(ngModel)]="selectedOption">{{opt.name}}</option>
+		<select class="filter-key" [(ngModel)]="selectedOption" name="first">
+			<option *ngFor="let opt of options" [ngValue]="opt">{{opt.name}}</option>
 		</select>
-		<div>Selected Option: {{selectedOption}}</div>
+				
+		<div *ngIf="selectedOption">Selected Option: {{selectedOption.name}}</div>
 			<div class="row history-table">
 				<div class="process-info col-md-12 well well-sm">
 					<div class="row">
