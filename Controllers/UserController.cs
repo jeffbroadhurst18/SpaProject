@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SpaProject.Data;
 using SpaProject.Data.Items;
@@ -78,6 +79,22 @@ namespace SpaProject.Controllers
 				_logger.LogError($"Error in UserController: {ex}");
 				return BadRequest(ex.ToString());
 			}
+		}
+
+		[HttpGet("getusers")]
+		public async Task<IActionResult> GetUsers(string user)
+		{
+			List<string> userNames = new List<string>();
+			var users = await _userManager.Users.ToListAsync();
+			foreach(var u in users)
+			{
+				userNames.Add(u.UserName);
+			}
+			if (userNames.Count() > 0)
+			{
+				return Ok(userNames.OrderBy(u => u));
+			}
+			return BadRequest();
 		}
 	}
 }

@@ -15,10 +15,12 @@ export class ProcessComponent implements OnInit{
 	errorMessage: string;
 
 	allOrders: Order[];
+	displayedOrders: Order[];
 	detailOrderItems: OrderItem[];
 	selectedOrderId: number;
 	sortOrder: string;
-	options: Object[];
+	options: string[];
+	selectedUser: string;
 	
 	selectedOption: number;
 	
@@ -32,22 +34,28 @@ export class ProcessComponent implements OnInit{
 			this.router.navigate(["login"]);
 		}
 
-		this.options = [
-			{ name: "option1", value: 1 },
-			{ name: "option2", value: 2 }
-		];
-		//this.selectedOption = options[0].name;
+		this.data.getUsers().subscribe(success => {
+			if (success) {
+				this.options = this.data.allUsers;
+			}
+		});
 
 		this.data.getAllOrders().subscribe(success => {
 			if (success) {
 
 				this.allOrders = this.returnSortedOrders(this.sortOrder);
+				this.displayedOrders = this.allOrders;
 
-				if (this.allOrders.length > 0) {
-					this.setSelected(this.allOrders[0].orderId);
+				if (this.displayedOrders.length > 0) {
+					this.setSelected(this.displayedOrders[0].orderId);
 				}
 			}
 		})
+	}
+
+	filterUser(selectedUser: string) {
+		this.selectedUser = selectedUser;
+		this.displayedOrders = this.allOrders.filter((order) => order.userName == selectedUser);
 	}
 
 	returnSortedOrders(sortOrder: string): Order[] 
@@ -65,8 +73,7 @@ export class ProcessComponent implements OnInit{
 				return this.data.allOrders.sort((n1, n2) => n1.orderTotal - n2.orderTotal);
 		}
 	}
-
-
+	
 	showDetail(orderId: number) {
 		this.data.getOrderItems(orderId).subscribe(success => {
 			if (success) {
@@ -83,7 +90,7 @@ export class ProcessComponent implements OnInit{
 	setStatus(selectedOrder: Order, newStatus: number) {
 		this.data.setStatus(selectedOrder, newStatus).subscribe(success => {
 			if (success) {
-				let amendedOrder = this.allOrders.find(a => a.orderId == selectedOrder.orderId);
+				let amendedOrder = this.displayedOrders.find(a => a.orderId == selectedOrder.orderId);
 				if (amendedOrder) {
 					amendedOrder.orderStatus = newStatus;
 				}
@@ -102,7 +109,7 @@ export class ProcessComponent implements OnInit{
 			default:
 				this.sortOrder = "totalAsc";
 		}
-		this.allOrders = this.returnSortedOrders(this.sortOrder);
+		this.displayedOrders = this.returnSortedOrders(this.sortOrder).filter((order) => order.userName == this.selectedUser);
 	}
 
 	sortByDate() {
@@ -116,6 +123,6 @@ export class ProcessComponent implements OnInit{
 			default:
 				this.sortOrder = "dateAsc";
 		}
-		this.allOrders = this.returnSortedOrders(this.sortOrder);
+		this.displayedOrders = this.returnSortedOrders(this.sortOrder).filter((order) => order.userName == this.selectedUser);
 	}
 }

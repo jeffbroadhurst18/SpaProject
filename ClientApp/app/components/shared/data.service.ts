@@ -29,6 +29,7 @@ export class DataService implements OnInit {
 
 	public userName: string = "";
 	public role: string = "";
+	public allUsers: string[];
 
 	loadProducts(): Observable<Product[]> {
 		return this.http.get("/api/products")
@@ -141,5 +142,11 @@ export class DataService implements OnInit {
 				this.order = new Order(); //Clears the current Order object
 				return true;
 			});
+	}
+
+	public getUsers() {
+		return this.http.get("/api/user/getusers", {
+			headers: new Headers({ "Authorization": "Bearer " + this.token })
+		}).map((result: Response) => this.allUsers = result.json());
 	}
 }

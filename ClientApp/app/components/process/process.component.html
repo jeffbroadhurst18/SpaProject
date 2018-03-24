@@ -1,11 +1,11 @@
 ﻿<div id="container">
 	<div class="process-body">
 		<div class="spa-page-title">Order Processing</div>
-		<select class="filter-key" [(ngModel)]="selectedOption" name="first">
-			<option *ngFor="let opt of options" [ngValue]="opt">{{opt.name}}</option>
-		</select>
-				
-		<div *ngIf="selectedOption">Selected Option: {{selectedOption.name}}</div>
+		<div>
+			<select class="filter-key" (ngModelChange)="filterUser($event)" [(ngModel)]="selectedOption" name="first">
+				<option *ngFor="let opt of options" [ngValue]="opt">{{opt}}</option>
+			</select>
+		</div>	
 			<div class="row history-table">
 				<div class="process-info col-md-12 well well-sm">
 					<div class="row">
@@ -20,7 +20,7 @@
 						<div class="col-md-2 process-name-title">Status</div>
 						<div class="col-md-4 process-name-title"></div>
 					</div>
-					<div class="row process-name-row" *ngFor="let h of allOrders" (mouseover)="setSelected(h.orderId)"
+					<div class="row process-name-row" *ngFor="let h of displayedOrders" (mouseover)="setSelected(h.orderId)"
 						 [class.row-selected]="selectedOrderId==h.orderId">
 						<div class="col-md-1 process-name">{{h.orderNumber}}</div>
 						<div class="col-md-3 process-name">{{h.orderDate | date:'dd-MM-yyyy HH:mm'}}</div>
