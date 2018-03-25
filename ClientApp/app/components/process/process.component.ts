@@ -21,8 +21,13 @@ export class ProcessComponent implements OnInit{
 	sortOrder: string;
 	options: string[];
 	selectedUser: string;
-	
+	selectedStatus: number;
 	selectedOption: number;
+	searchCriteria: Object;
+	public criterias = [
+		{ value: '1', display: 'User' },
+		{ value: '2', display: 'Status' }
+	];
 	
 	constructor(private data: DataService, private router: Router,
 				private location: Location) {
@@ -53,9 +58,42 @@ export class ProcessComponent implements OnInit{
 		})
 	}
 
+	handleChange() {
+		if (this.searchCriteria == '1') {
+			this.options = this.data.allUsers;
+			this.displayedOrders = this.allOrders;
+		}
+		else {
+			this.options = ['Pending', 'Completed', 'Cancelled', 'Returned'];
+			this.displayedOrders = this.allOrders;
+		}
+	}
+
 	filterUser(selectedUser: string) {
-		this.selectedUser = selectedUser;
-		this.displayedOrders = this.allOrders.filter((order) => order.userName == selectedUser);
+		if (this.searchCriteria == '1') {
+			this.selectedUser = selectedUser;
+			this.displayedOrders = this.allOrders.filter((order) => order.userName == this.selectedUser);
+		}
+		else {
+			switch (selectedUser) {
+				case 'Pending':
+					this.selectedStatus = 0;
+					break;
+				case 'Completed':
+					this.selectedStatus = 1;
+					break;
+				case 'Cancelled':
+					this.selectedStatus = 2;
+					break;
+				case 'Returned':
+					this.selectedStatus = 3;
+					break;
+				default:
+					this.selectedStatus = 0;
+			}
+
+			this.displayedOrders = this.allOrders.filter((order) => order.orderStatus == this.selectedStatus);
+		}
 	}
 
 	returnSortedOrders(sortOrder: string): Order[] 
@@ -66,9 +104,9 @@ export class ProcessComponent implements OnInit{
 			case "totalDesc":
 				return this.data.allOrders.sort((n1, n2) => n2.orderTotal - n1.orderTotal);
 			case "dateAsc":
-				return this.data.allOrders.sort((n1, n2) => Date.parse(n1.orderDate.toString()) - Date.parse(n2.orderDate.toString());
+				return this.data.allOrders.sort((n1, n2) => Date.parse(n1.orderDate.toString()) - Date.parse(n2.orderDate.toString()));
 			case "dateDesc":
-				return this.data.allOrders.sort((n1, n2) => Date.parse(n2.orderDate.toString()) - Date.parse(n1.orderDate.toString());
+				return this.data.allOrders.sort((n1, n2) => Date.parse(n2.orderDate.toString()) - Date.parse(n1.orderDate.toString()));
 			default:
 				return this.data.allOrders.sort((n1, n2) => n1.orderTotal - n2.orderTotal);
 		}
@@ -109,7 +147,12 @@ export class ProcessComponent implements OnInit{
 			default:
 				this.sortOrder = "totalAsc";
 		}
-		this.displayedOrders = this.returnSortedOrders(this.sortOrder).filter((order) => order.userName == this.selectedUser);
+		if (this.searchCriteria == '1') {
+			this.displayedOrders = this.returnSortedOrders(this.sortOrder).filter((order) => order.userName == this.selectedUser);
+		}
+		else {
+			this.displayedOrders = this.returnSortedOrders(this.sortOrder).filter((order) => order.orderStatus == this.selectedStatus);
+		}
 	}
 
 	sortByDate() {
@@ -123,6 +166,12 @@ export class ProcessComponent implements OnInit{
 			default:
 				this.sortOrder = "dateAsc";
 		}
-		this.displayedOrders = this.returnSortedOrders(this.sortOrder).filter((order) => order.userName == this.selectedUser);
+
+		if (this.searchCriteria == '1') {
+			this.displayedOrders = this.returnSortedOrders(this.sortOrder).filter((order) => order.userName == this.selectedUser);
+		}
+		else {
+			this.displayedOrders = this.returnSortedOrders(this.sortOrder).filter((order) => order.orderStatus == this.selectedStatus);
+		}
 	}
 }

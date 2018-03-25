@@ -121,3 +121,18 @@ body, html, #container {
 	margin-left:20px;
 	margin-bottom:20px;
 }
+
+.spa-filter-input {
+	float:left;
+	clear:none;
+	display:block;
+}
+
+.spa-filter-label {
+	clear: none;
+}
+
+.spa-filter-class {
+	float:left;
+	clear:none;
+}
