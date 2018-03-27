@@ -1,21 +1,15 @@
 ﻿<div id="container">
 	<div class="process-body">
 		<div class="spa-page-title">Order Processing</div>
-		<div class="row spa-filter-class">
-			<div class="col-md-2">
-				<div><label>Filter Criteria</label></div>
-				<div *ngFor="let crit of criterias" class="row">
-					<div class="col-md-6">
-						<input type="radio" name="criteria" [(ngModel)]="searchCriteria" [value]="crit.value" class="spa-filter-input" (change)="handleChange($event)" />
-						<label class="spa-filter-label">
-							{{crit.display}}
-						</label>
-					</div>
-				</div>
-			</div>
+		<div class="filter-radio">
+			<label>Filter By:</label>
+			<input id="criteria1" type="radio" name="criteria1" [(ngModel)]="searchCriteria" [value]="criterias[0].value" (change)="handleChange($event)" />
+			<label for="criteria1">{{criterias[0].display}}</label>
+			<input id="criteria2" type="radio" name="criteria2" [(ngModel)]="searchCriteria" [value]="criterias[1].value" (change)="handleChange($event)" />
+			<label for="criteria2">{{criterias[1].display}}</label>
 		</div>
 		<div>
-			<select class="filter-key" (ngModelChange)="filterUser($event)" [(ngModel)]="selectedOption" name="first">
+			<select class="filter-key" (ngModelChange)="filterDisplay($event)" [(ngModel)]="selectedOption" name="first">
 				<option *ngFor="let opt of options" [ngValue]="opt">{{opt}}</option>
 			</select>
 		</div>

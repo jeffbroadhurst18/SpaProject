@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
 	templateUrl: "process.component.html",
 	styleUrls: ['./process.component.css', '../app/app.component.css']
 })
-export class ProcessComponent implements OnInit{
+export class ProcessComponent implements OnInit {
 
 	errorMessage: string;
 
@@ -23,14 +23,14 @@ export class ProcessComponent implements OnInit{
 	selectedUser: string;
 	selectedStatus: number;
 	selectedOption: number;
-	searchCriteria: Object;
+	searchCriteria: string;;
 	public criterias = [
 		{ value: '1', display: 'User' },
 		{ value: '2', display: 'Status' }
 	];
-	
+
 	constructor(private data: DataService, private router: Router,
-				private location: Location) {
+		private location: Location) {
 		this.sortOrder = "totalAsc";
 	}
 
@@ -38,6 +38,8 @@ export class ProcessComponent implements OnInit{
 		if (this.data.loginRequired) {
 			this.router.navigate(["login"]);
 		}
+
+		this.searchCriteria = this.criterias[0].value;
 
 		this.data.getUsers().subscribe(success => {
 			if (success) {
@@ -47,10 +49,8 @@ export class ProcessComponent implements OnInit{
 
 		this.data.getAllOrders().subscribe(success => {
 			if (success) {
-
 				this.allOrders = this.returnSortedOrders(this.sortOrder);
 				this.displayedOrders = this.allOrders;
-
 				if (this.displayedOrders.length > 0) {
 					this.setSelected(this.displayedOrders[0].orderId);
 				}
@@ -61,15 +61,17 @@ export class ProcessComponent implements OnInit{
 	handleChange() {
 		if (this.searchCriteria == '1') {
 			this.options = this.data.allUsers;
-			this.displayedOrders = this.allOrders;
 		}
 		else {
 			this.options = ['Pending', 'Completed', 'Cancelled', 'Returned'];
-			this.displayedOrders = this.allOrders;
+		}
+		this.displayedOrders = this.allOrders;
+		if (this.displayedOrders.length > 0) {
+			this.setSelected(this.displayedOrders[0].orderId);
 		}
 	}
 
-	filterUser(selectedUser: string) {
+	filterDisplay(selectedUser: string) {
 		if (this.searchCriteria == '1') {
 			this.selectedUser = selectedUser;
 			this.displayedOrders = this.allOrders.filter((order) => order.userName == this.selectedUser);
@@ -94,10 +96,12 @@ export class ProcessComponent implements OnInit{
 
 			this.displayedOrders = this.allOrders.filter((order) => order.orderStatus == this.selectedStatus);
 		}
+		if (this.displayedOrders.length > 0) {
+			this.setSelected(this.displayedOrders[0].orderId);
+		}
 	}
 
-	returnSortedOrders(sortOrder: string): Order[] 
-		{
+	returnSortedOrders(sortOrder: string): Order[] {
 		switch (sortOrder) {
 			case "totalAsc":
 				return this.data.allOrders.sort((n1, n2) => n1.orderTotal - n2.orderTotal);
@@ -111,7 +115,7 @@ export class ProcessComponent implements OnInit{
 				return this.data.allOrders.sort((n1, n2) => n1.orderTotal - n2.orderTotal);
 		}
 	}
-	
+
 	showDetail(orderId: number) {
 		this.data.getOrderItems(orderId).subscribe(success => {
 			if (success) {
@@ -120,7 +124,7 @@ export class ProcessComponent implements OnInit{
 		})
 	}
 
-	setSelected(orderId:number) {
+	setSelected(orderId: number) {
 		this.selectedOrderId = orderId;
 		this.showDetail(orderId);
 	}
