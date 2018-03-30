@@ -19,15 +19,15 @@
 					</a>
 				</li>
 				<!--<li [routerLinkActive]="['link-active']">
-					<a [routerLink]="['/counter']">
-						<span class='glyphicon glyphicon-education'></span> Counter
-					</a>
-				</li>
-				<li [routerLinkActive]="['link-active']">
-					<a [routerLink]="['/fetch-data']">
-						<span class='glyphicon glyphicon-th-list'></span> Fetch data
-					</a>
-				</li>-->
+		<a [routerLink]="['/counter']">
+			<span class='glyphicon glyphicon-education'></span> Counter
+		</a>
+	</li>
+	<li [routerLinkActive]="['link-active']">
+		<a [routerLink]="['/fetch-data']">
+			<span class='glyphicon glyphicon-th-list'></span> Fetch data
+		</a>
+	</li>-->
 				<li [routerLinkActive]="['link-active']">
 					<a [routerLink]="['/the-shop']">
 						<span class='glyphicon glyphicon-th-list'></span> Shop
@@ -41,6 +41,11 @@
 				<li [routerLinkActive]="['link-active']" *ngIf="isAdmin">
 					<a [routerLink]="['/process']">
 						<span class='glyphicon glyphicon-th-list'></span> Order Processing
+					</a>
+				</li>
+				<li [routerLinkActive]="['link-active']" *ngIf="!data.loginRequired">
+					<a [routerLink]="['/address']">
+						<span class='glyphicon glyphicon-th-list'></span> Address
 					</a>
 				</li>
 				<li [routerLinkActive]="['link-active']" *ngIf="data.loginRequired">

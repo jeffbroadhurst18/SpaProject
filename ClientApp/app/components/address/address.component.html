@@ -1,0 +1,46 @@
+﻿<form *ngIf="address" [formGroup]="contactForm" (submit)="submit()" class="col-md-offset-2 col-md-8" novalidate>
+	<h2>Address details</h2>
+	<div class="form-group">
+		<div class="contact-line contact-label"><label>User Name</label></div>
+		<div class="contact-line contact-text"><input type="text" formControlName="username" required class="form-control" placeholder="username" [(ngModel)]="address.username"></div>
+	</div>
+	<div class="form-group">
+		<div class="contact-line contact-label"><label>Address Line 1</label></div>
+		<div class="contact-line contact-text">
+			<input type="text" minlength="4" maxlength="20" formControlName="addressline1" required class="form-control" [(ngModel)]="address.addressline1"
+				   placeholder="Address line 1">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="contact-line contact-label"><label>Address Line 2</label></div>
+		<div class="contact-line contact-text">
+			<input type="text" minlength="4" maxlength="20" formControlName="addressline2" class="form-control" [(ngModel)]="address.addressline2"
+				   placeholder="Address line 2">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="contact-line contact-label"><label>City</label></div>
+		<div class="contact-line contact-text"><input type="text" minlength="4" maxlength="20" formControlName="city" required class="form-control" placeholder="City" [(ngModel)]="address.city"></div>
+	</div>
+	<div class="form-group">
+		<div class="contact-line contact-label"><label>Postcode</label></div>
+		<div class="contact-line contact-text"><input type="text" minlength="4" maxlength="20" formControlName="postcode" required class="form-control" placeholder="Postcode" [(ngModel)]="address.postcode"></div>
+	</div>
+	<div class="form-group">
+		<div class="contact-line contact-label"><label>Country</label></div>
+		<div class="contact-line contact-text"><input type="text" minlength="4" maxlength="20" formControlName="country" required class="form-control" placeholder="Country" [(ngModel)]="address.country"></div>
+	</div>
+	<div class="form-group">
+		<div class="contact-line contact-label"><label>Telephone</label></div>
+		<div class="contact-line contact-text"><input type="tel" formControlName="telephone" required class="form-control" placeholder="Telephone" [(ngModel)]="address.telephone"></div>
+	</div>
+
+	<div class="form-group">
+		<button type="submit" [disabled]="contactForm.invalid" class="btn btn-primary">Save</button>
+		<button class="btn btn-primary" (click)="cancel()">Cancel</button>
+	</div>
+</form>
+<div>
+	{{address|json}}
+</div>
+{{isNameDisabled}}

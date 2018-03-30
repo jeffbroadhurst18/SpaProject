@@ -42,11 +42,13 @@
   </ItemGroup>
     
   <ItemGroup>
+    <None Remove="ClientApp\app\components\address\address.component.ts" />
     <None Remove="ClientApp\app\components\login\create.user.component.ts" />
     <None Remove="ClientApp\app\components\login\login.component.ts" />
     <None Remove="ClientApp\app\components\processdetail\processdetail.component.ts" />
     <None Remove="ClientApp\app\components\process\process.component.pipe.ts" />
     <None Remove="ClientApp\app\components\process\process.component.ts" />
+    <None Remove="ClientApp\app\components\shared\address.ts" />
     <None Remove="ClientApp\app\components\shared\data.service.ts" />
     <None Remove="ClientApp\app\components\shared\order.ts" />
     <None Remove="ClientApp\app\components\shared\product.ts" />
@@ -57,12 +59,14 @@
   </ItemGroup>
     
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\address\address.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\history\history.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\login\create.user.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\processdetail\processdetail.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\process\process.component.pipe.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\process\process.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\address.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\data.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\order.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\product.ts" />

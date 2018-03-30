@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { Product } from "./product";
 import { User } from "./user";
 import { Order, OrderItem } from "./order";
+import { Address } from "./address";
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -30,6 +31,7 @@ export class DataService implements OnInit {
 	public userName: string = "";
 	public role: string = "";
 	public allUsers: string[];
+	public address: Address;
 
 	loadProducts(): Observable<Product[]> {
 		return this.http.get("/api/products")
@@ -149,4 +151,11 @@ export class DataService implements OnInit {
 			headers: new Headers({ "Authorization": "Bearer " + this.token })
 		}).map((result: Response) => this.allUsers = result.json());
 	}
+
+	public getAddress(username:string) {
+		return this.http.get("/api/user/getaddress/" + username, {
+			headers: new Headers({ "Authorization": "Bearer " + this.token })
+		}).map((result: Response) => this.address = result.json());
+	}
 }
+

@@ -1,0 +1,15 @@
+﻿.contact-line {
+	display: inline-block;
+}
+
+.contact-label {
+	width: 25%;
+}
+
+.contact-text {
+	width: 65%;
+}
+
+.contact-border {
+	border: 1px solid black;
+}

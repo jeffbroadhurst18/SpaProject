@@ -21,6 +21,7 @@ import { ProcessComponent } from './components/process/process.component';
 import { ProcessDetailComponent } from './components/processdetail/processdetail.component';
 import { CreateUserComponent } from './components/login/create.user.component';
 import { TransformStatusPipe } from "./components/process/process.component.pipe"
+import { AddressComponent } from './components/address/address.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { TransformStatusPipe } from "./components/process/process.component.pipe
 		ProcessComponent,
 		ProcessDetailComponent,
 		CreateUserComponent,
+		AddressComponent,
 		TransformStatusPipe,
     ],
     imports: [
@@ -60,6 +62,7 @@ import { TransformStatusPipe } from "./components/process/process.component.pipe
 			{ path: 'process', component: ProcessComponent },
 			{ path: 'processdetail', component: ProcessDetailComponent },
 			{ path: 'createuser', component: CreateUserComponent },
+			{ path: 'address', component: AddressComponent },
             { path: '**', redirectTo: 'home' }
         ])
 	],

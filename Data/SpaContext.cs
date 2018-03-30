@@ -20,5 +20,6 @@ namespace SpaProject.Data
 		public DbSet<Order> Orders { get; set; }
 		public DbSet<Delivery> Deliveries { get; set; }
 		public DbSet<Config> Config { get; set; }
+		public DbSet<Address> Address { get; set; }
 	}
 }
