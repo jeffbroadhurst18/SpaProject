@@ -9,12 +9,13 @@ using SpaProject.Data;
 using SpaProject.Data.Items;
 using System;
 
-namespace SpaProject.Migrations
+namespace SpaProject.Data.Migrations
 {
     [DbContext(typeof(SpaContext))]
-    partial class SpaContextModelSnapshot : ModelSnapshot
+    [Migration("20180330195248_Fri3003c")]
+    partial class Fri3003c
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,36 +128,6 @@ namespace SpaProject.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("SpaProject.Data.Items.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AddressLine1")
-                        .IsRequired();
-
-                    b.Property<string>("AddressLine2");
-
-                    b.Property<string>("City")
-                        .IsRequired();
-
-                    b.Property<string>("County")
-                        .IsRequired();
-
-                    b.Property<string>("Postcode")
-                        .IsRequired();
-
-                    b.Property<string>("Telephone")
-                        .IsRequired();
-
-                    b.Property<string>("Username")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("SpaProject.Data.Items.Config", b =>
@@ -299,8 +270,6 @@ namespace SpaProject.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<int?>("AddressId");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -342,8 +311,6 @@ namespace SpaProject.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -441,13 +408,6 @@ namespace SpaProject.Migrations
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SpaProject.Data.Items.StoreUser", b =>
-                {
-                    b.HasOne("SpaProject.Data.Items.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
                 });
 #pragma warning restore 612, 618
         }

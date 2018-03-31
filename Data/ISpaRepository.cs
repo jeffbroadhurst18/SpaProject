@@ -18,5 +18,6 @@ namespace SpaProject.Data
 		IEnumerable<OrderItem> GetOrderItems(int id);
 		Order UpdateOrder(Order order);
 		StoreUser GetLastUser();
+		Address GetAddress(string user);
 	}
 }

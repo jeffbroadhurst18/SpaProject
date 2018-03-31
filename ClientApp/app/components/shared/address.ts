@@ -1,9 +1,10 @@
 ﻿export class Address {
-	username: string;
-	addressline1: string;
-	addressline2: string;
-	city: string;
-	postcode: string;
-	country: string;
-	telephone: string;
+	constructor(
+	public username: string,
+	public addressline1: string,
+	public addressline2: string,
+	public city: string,
+	public postcode: string,
+	public country: string,
+	public telephone: string){ }
 }

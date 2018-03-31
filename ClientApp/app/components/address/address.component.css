@@ -13,3 +13,7 @@
 .contact-border {
 	border: 1px solid black;
 }
+
+.isError {
+	border: 2px solid red;
+}

@@ -1,13 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SpaProject.Data.Items
 {
-    public class StoreUser : IdentityUser
+	public class StoreUser : IdentityUser
 	{
 		[Required]
 		public string FirstName { get; set; }
@@ -16,5 +12,6 @@ namespace SpaProject.Data.Items
 		[Required]
 		public string PersonalIdNumber { get; set; }
 	
+		public Address Address { get; set; }
 	}
 }

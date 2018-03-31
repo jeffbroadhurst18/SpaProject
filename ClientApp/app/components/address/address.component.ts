@@ -2,7 +2,7 @@
 import { DataService } from "../shared/data.service";
 import { Router } from "@angular/router";
 import { Address } from "../shared/address";
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
 	selector: "address",
@@ -12,13 +12,20 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddressComponent implements OnInit {
 
 	userName: string;
-	address: Address;
+	address: Address = new Address('', '', '', '', '', '', '');
 	contactForm: FormGroup;
 	isNew: boolean;
-	
+
 	ngOnInit(): void {
 		this.userName = this.data.userName;
-		this.address = this.data.getAddress(this.userName);
+		this.data.getAddress(this.userName).subscribe(success => {
+			if (success) {
+				this.address = this.data.address;
+			}
+			else {
+				this.address.username = this.userName;
+			}
+		});
 
 		//this.address = new Address();
 		//this.address.username = this.userName;
@@ -40,24 +47,24 @@ export class AddressComponent implements OnInit {
 	errorMessage: string;
 
 	constructor(private data: DataService, private router: Router, private fb: FormBuilder) {
-		
+
 	}
 
 	buildForm() {
 		this.contactForm = this.fb.group({
 			'username': [this.userName, Validators.required],
-			'addressline1': ['', Validators.required],
-			'addressline2': [''],
+			'addressline1': ['', [Validators.required,Validators.minLength(4),Validators.maxLength(20)]],
+			'addressline2': ['', [Validators.minLength(4), Validators.maxLength(20)]],
 			'city': ['', Validators.required],
 			'postcode': ['', Validators.required],
 			'country': ['', Validators.required],
-			'telephone': ['', Validators.required],
+			'telephone': ['', [Validators.required,Validators.minLength(11)]],
 		});
 
 		this.contactForm.controls['username'].disable();
 	}
 
-	
+
 
 	submit() {
 		if (this.isNew) {

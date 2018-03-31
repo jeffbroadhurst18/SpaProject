@@ -96,5 +96,18 @@ namespace SpaProject.Controllers
 			}
 			return BadRequest();
 		}
+
+		[HttpGet("getaddress/{user}")]
+		public IActionResult GetAddress(string user)
+		{
+			try
+			{
+				return Ok(_repository.GetAddress(user));
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ex.ToString());
+			}
+		}
 	}
 }

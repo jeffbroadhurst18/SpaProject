@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SpaProject.Data.Items
 {
-    public class Address
+	public class Address
     {
 		[Required]
 		public int Id { get; set; }

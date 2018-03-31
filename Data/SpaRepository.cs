@@ -179,5 +179,11 @@ namespace SpaProject.Data
 			var lastuser = _ctx.Users.OrderByDescending(o => o.PersonalIdNumber).FirstOrDefault();
 			return lastuser;
 		}
+
+		public Address GetAddress(string user)
+		{
+			var address = _ctx.Address.Where(a => a.Username == user).FirstOrDefault();
+			return address;
+		}
 	}
 }
