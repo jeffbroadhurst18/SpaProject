@@ -12,10 +12,9 @@ import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@ang
 export class AddressComponent implements OnInit {
 
 	userName: string;
-	address: Address = new Address('', '', '', '', '', '', '');
+	address: Address = new Address(0,'', '', '', '', '', '', '');
 	contactForm: FormGroup;
-	isNew: boolean;
-
+	
 	ngOnInit(): void {
 		this.userName = this.data.userName;
 		this.data.getAddress(this.userName).subscribe(success => {
@@ -35,8 +34,7 @@ export class AddressComponent implements OnInit {
 		//this.address.postcode = "YO12 3DF";
 		//this.address.country = "UK";
 		//this.address.telephone = "01344 454343";
-		this.isNew = false;
-
+		
 		//this.address = new Address();
 		//this.address.username = this.userName;
 		//this.isNew = true;
@@ -67,12 +65,9 @@ export class AddressComponent implements OnInit {
 
 
 	submit() {
-		if (this.isNew) {
-			//		this.data.addAddress(this.address).subscribe((data) => this.afterSave());
-		} else {
-			//		this.data.updateAddress(this.address).subscribe((data) => this.afterSave());
-		}
+			this.data.addAddress(this.address).subscribe((success) => this.afterSave());
 	}
+
 	afterSave() {
 		this.router.navigate(['']);
 	}

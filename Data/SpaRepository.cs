@@ -185,5 +185,21 @@ namespace SpaProject.Data
 			var address = _ctx.Address.Where(a => a.Username == user).FirstOrDefault();
 			return address;
 		}
+
+		public Address UpdateAddress(Address address)
+		{
+			var isNew = _ctx.Address.Any(a => a.Username == address.Username);
+			
+			if (!isNew)
+			{
+				_ctx.Add(address);
+			}
+			else
+			{
+				_ctx.Update(address);
+			}
+			_ctx.SaveChanges();
+			return _ctx.Address.Where(a => a.Username == address.Username).FirstOrDefault();
+		}
 	}
 }

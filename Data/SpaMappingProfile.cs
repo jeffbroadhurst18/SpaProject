@@ -21,6 +21,9 @@ namespace SpaProject.Data
 
 			CreateMap<OrderItem, OrderItemViewModel>()
 				.ReverseMap();
+
+			CreateMap<Address, AddressViewModel>()
+				.ReverseMap();
 		}
 
 	}

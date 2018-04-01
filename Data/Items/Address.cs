@@ -22,7 +22,7 @@ namespace SpaProject.Data.Items
 		public string Postcode { get; set; }
 
 		[Required]
-		public string County { get; set; }
+		public string Country { get; set; }
 
 		[Required]
 		public string Telephone { get; set; }

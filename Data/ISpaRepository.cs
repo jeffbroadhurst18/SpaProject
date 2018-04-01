@@ -19,5 +19,6 @@ namespace SpaProject.Data
 		Order UpdateOrder(Order order);
 		StoreUser GetLastUser();
 		Address GetAddress(string user);
+		Address UpdateAddress(Address address);
 	}
 }

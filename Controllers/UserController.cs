@@ -16,10 +16,10 @@ using SpaProject.ViewModels;
 
 namespace SpaProject.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/User")]
-    public class UserController : Controller
-    {
+	[Produces("application/json")]
+	[Route("api/User")]
+	public class UserController : Controller
+	{
 		private ISpaRepository _repository;
 		private ILogger<UserController> _logger;
 		private IMapper _mapper;
@@ -27,7 +27,7 @@ namespace SpaProject.Controllers
 		private readonly RoleManager<IdentityRole> _roleManager;
 
 		public UserController(ISpaRepository repository, ILogger<UserController> logger, IMapper mapper,
-			UserManager<StoreUser> userManager,RoleManager<IdentityRole> roleManager)
+			UserManager<StoreUser> userManager, RoleManager<IdentityRole> roleManager)
 		{
 			_repository = repository;
 			_logger = logger;
@@ -35,7 +35,7 @@ namespace SpaProject.Controllers
 			_userManager = userManager;
 			this._roleManager = roleManager;
 		}
-		
+
 		[HttpGet("getrole/{user}")]
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 		public async Task<IActionResult> GetRole(string user)
@@ -65,7 +65,7 @@ namespace SpaProject.Controllers
 					LastName = uvm.LastName,
 					UserName = uvm.UserName,
 					Email = uvm.EmailAddress,
-					PersonalIdNumber =  (int.Parse(lastUser.PersonalIdNumber.ToString()) + 1).ToString()
+					PersonalIdNumber = (int.Parse(lastUser.PersonalIdNumber.ToString()) + 1).ToString()
 				};
 
 				//Default the password to this value.
@@ -86,7 +86,7 @@ namespace SpaProject.Controllers
 		{
 			List<string> userNames = new List<string>();
 			var users = await _userManager.Users.ToListAsync();
-			foreach(var u in users)
+			foreach (var u in users)
 			{
 				userNames.Add(u.UserName);
 			}
@@ -102,12 +102,29 @@ namespace SpaProject.Controllers
 		{
 			try
 			{
-				return Ok(_repository.GetAddress(user));
+				return Ok(_mapper.Map<Address, AddressViewModel>(_repository.GetAddress(user)));
 			}
 			catch (Exception ex)
 			{
 				return BadRequest(ex.ToString());
 			}
+		}
+
+		[HttpPost("address")]
+		public IActionResult Address([FromBody] AddressViewModel avm)
+		{
+			try
+			{
+				var newAddress = _mapper.Map<AddressViewModel, Address>(avm);
+
+				var updatedAddress = _repository.UpdateAddress(newAddress);
+				return Ok(_mapper.Map<Address, AddressViewModel>(updatedAddress));
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ex.ToString());
+			}
+
 		}
 	}
 }

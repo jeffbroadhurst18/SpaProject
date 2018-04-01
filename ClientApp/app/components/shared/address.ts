@@ -1,5 +1,6 @@
 ﻿export class Address {
 	constructor(
+    public id: number,
 	public username: string,
 	public addressline1: string,
 	public addressline2: string,
