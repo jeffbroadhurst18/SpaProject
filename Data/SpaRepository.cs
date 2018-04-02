@@ -201,5 +201,13 @@ namespace SpaProject.Data
 			_ctx.SaveChanges();
 			return _ctx.Address.Where(a => a.Username == address.Username).FirstOrDefault();
 		}
+
+		public bool AddAddressToUser(StoreUser currentUser, Address updatedAddress)
+		{
+			currentUser.Address = updatedAddress;
+			_ctx.Update(currentUser);
+			_ctx.SaveChanges();
+			return true;
+		}
 	}
 }

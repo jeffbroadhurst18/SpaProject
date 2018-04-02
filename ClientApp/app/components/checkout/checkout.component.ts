@@ -17,6 +17,7 @@ export class CheckoutComponent implements OnInit{
 
 	ngOnInit(): void {
 		this.data.calculateTotal();
+		this.data.getAddress(this.data.userName).subscribe(success => {	});
 	}
 
 	onCheckout() {

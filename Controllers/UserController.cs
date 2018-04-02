@@ -111,13 +111,14 @@ namespace SpaProject.Controllers
 		}
 
 		[HttpPost("address")]
-		public IActionResult Address([FromBody] AddressViewModel avm)
+		public async Task<IActionResult> Address([FromBody] AddressViewModel avm)
 		{
 			try
 			{
 				var newAddress = _mapper.Map<AddressViewModel, Address>(avm);
-
+				var currentUser = await _userManager.FindByNameAsync(avm.username);
 				var updatedAddress = _repository.UpdateAddress(newAddress);
+				_repository.AddAddressToUser(currentUser, updatedAddress);
 				return Ok(_mapper.Map<Address, AddressViewModel>(updatedAddress));
 			}
 			catch (Exception ex)

@@ -7,7 +7,7 @@ import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@ang
 @Component({
 	selector: "address",
 	templateUrl: "address.component.html",
-	styleUrls: ['./address.component.css']
+	styleUrls: ['./address.component.css', '../app/app.component.css']
 })
 export class AddressComponent implements OnInit {
 
@@ -26,18 +26,6 @@ export class AddressComponent implements OnInit {
 			}
 		});
 
-		//this.address = new Address();
-		//this.address.username = this.userName;
-		//this.address.addressline1 = "18 Current Street";
-		//this.address.addressline2 = "Wertley";
-		//this.address.city = "York";
-		//this.address.postcode = "YO12 3DF";
-		//this.address.country = "UK";
-		//this.address.telephone = "01344 454343";
-		
-		//this.address = new Address();
-		//this.address.username = this.userName;
-		//this.isNew = true;
 		this.buildForm();
 
 	}
@@ -69,7 +57,7 @@ export class AddressComponent implements OnInit {
 	}
 
 	afterSave() {
-		this.router.navigate(['']);
+		this.router.navigate(['address']);
 	}
 
 	cancel() {

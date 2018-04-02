@@ -1,5 +1,5 @@
-﻿<form *ngIf="address" [formGroup]="contactForm" (submit)="submit()" class="col-md-offset-2 col-md-8" novalidate>
-	<h2>Address details</h2>
+﻿<div class="spa-page-title">Address details</div>
+<form *ngIf="address" [formGroup]="contactForm" (submit)="submit()" class="col-md-8" novalidate>
 	<div class="form-group">
 		<div class="contact-line contact-label"><label>User Name</label></div>
 		<div class="contact-line contact-text"><input type="text" name="username" formControlName="username" 
