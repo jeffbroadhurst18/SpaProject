@@ -45,6 +45,14 @@ namespace SpaProject.Controllers
 			return Ok(roles.First());
 		}
 
+		[HttpGet("getuser/{user}")]
+		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+		public async Task<IActionResult> GetUser(string user)
+		{
+			StoreUser storeUser = await _userManager.FindByNameAsync(user);
+			return Ok(storeUser);
+		}
+
 		[HttpPost]
 		public async Task<IActionResult> Post([FromBody] UserViewModel uvm)
 		{

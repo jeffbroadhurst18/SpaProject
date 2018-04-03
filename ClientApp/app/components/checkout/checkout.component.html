@@ -19,34 +19,35 @@
 	</table>
 </div>
 <div class="row">
-	<div class="overseas col-md-2">
+	<div class="col-md-4 text-left" *ngIf="data.address && data.user">
+		<label>Address</label>
+		<table class="table table-condensed table-bordered">
+			<tr>
+				<td class="text-left checkout-address">{{ data.user.firstName }} {{ data.user.lastName }}</td>
+			</tr>
+			<tr>
+				<td class="text-left checkout-address">{{ data.address.addressline1 }}</td>
+			</tr>
+			<tr *ngIf="data.address.addressline2 checkout-address">
+				<td class="text-left">{{ data.address.addressline2 }}</td>
+			</tr>
+			<tr>
+				<td class="text-left checkout-address">{{ data.address.city }}</td>
+			</tr>
+			<tr>
+				<td class="text-left checkout-address">{{ data.address.postcode }}</td>
+			</tr>
+			<tr>
+				<td class="text-left checkout-address">{{ data.address.country }}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="overseas col-md-2" *ngIf="data.order.orderTotal">
 		<label>Overseas Address?</label>
 		<input id="overseas" name="overseas" type="checkbox" [(ngModel)]="data.order.overseas"
 			   (change)="recalculateTotal($event)">
 	</div>
-	<div class="col-md-4 text-left">
-		<table class="table table-condensed">
-			<tr>
-				<td class="text-left">{{ data.userName }}</td>
-			</tr>
-			<tr>
-				<td class="text-left">{{ data.address.addressline1 }}</td>
-			</tr>
-			<tr>
-				<td class="text-left">{{ data.address.addressline2 }}</td>
-			</tr>
-			<tr>
-				<td class="text-left">{{ data.address.city }}</td>
-			</tr>
-			<tr>
-				<td class="text-left">{{ data.address.postcode }}</td>
-			</tr>
-			<tr>
-				<td class="text-left">{{ data.address.country }}</td>
-			</tr>
-		</table>
-	</div>
-	<div class="col-md-6 text-right">
+	<div class="col-md-6 text-right" *ngIf="data.order.orderTotal">
 		<table class="table table-condensed">
 			<tr>
 				<td class="text-right">Subtotal</td>

@@ -8,3 +8,8 @@
 .overseas {
 	float:left;
 }
+
+.checkout-address {
+	border:hidden;
+	padding:0;
+}

@@ -29,6 +29,7 @@ export class DataService implements OnInit {
 	public orderItems: OrderItem[] = []; 
 
 	public userName: string = "";
+	public user: User;
 	public role: string = "";
 	public allUsers: string[];
 	public address: Address;
@@ -156,6 +157,12 @@ export class DataService implements OnInit {
 		return this.http.get("/api/user/getusers", {
 			headers: new Headers({ "Authorization": "Bearer " + this.token })
 		}).map((result: Response) => this.allUsers = result.json());
+	}
+
+	public getUser(username: string) {
+		return this.http.get("/api/user/getuser/" + username, {
+			headers: new Headers({ "Authorization": "Bearer " + this.token })
+		}).map((result: Response) => this.user = result.json());
 	}
 
 	public getAddress(username:string) {
