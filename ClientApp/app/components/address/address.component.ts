@@ -14,6 +14,7 @@ export class AddressComponent implements OnInit {
 	userName: string;
 	address: Address = new Address(0,'', '', '', '', '', '', '');
 	contactForm: FormGroup;
+	isNew: boolean;
 	
 	ngOnInit(): void {
 		this.userName = this.data.userName;
@@ -22,12 +23,12 @@ export class AddressComponent implements OnInit {
 				this.address = this.data.address;
 			}
 			else {
+				this.isNew = true;
 				this.address.username = this.userName;
 			}
 		});
 
 		this.buildForm();
-
 	}
 
 	errorMessage: string;
@@ -53,7 +54,11 @@ export class AddressComponent implements OnInit {
 
 
 	submit() {
+		if (this.isNew) {
 			this.data.addAddress(this.address).subscribe((success) => this.afterSave());
+		} else {
+			this.data.updateAddress(this.userName,this.address).subscribe((success) => this.afterSave());
+		}
 	}
 
 	afterSave() {

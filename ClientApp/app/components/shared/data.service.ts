@@ -139,6 +139,12 @@ export class DataService implements OnInit {
 		}).map((response: Response) => response.json());
 	}
 
+	public updateAddress(userName:string, address: Address) {
+		return this.http.put("/api/user/address/" + userName, address, {
+			headers: new Headers({ "Authorization": "Bearer " + this.token })
+		}).map((response: Response) => response.json());
+	}
+
 	public checkout() {
 		if (!this.order.orderNumber) {
 			this.order.orderNumber = this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();

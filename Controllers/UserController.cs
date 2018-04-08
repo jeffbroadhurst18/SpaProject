@@ -125,7 +125,26 @@ namespace SpaProject.Controllers
 			{
 				var newAddress = _mapper.Map<AddressViewModel, Address>(avm);
 				var currentUser = await _userManager.FindByNameAsync(avm.username);
+				var updatedAddress = _repository.AddAddress(newAddress);
+				_repository.AddAddressToUser(currentUser, updatedAddress);
+				return Ok(_mapper.Map<Address, AddressViewModel>(updatedAddress));
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ex.ToString());
+			}
+
+		}
+
+		[HttpPut("address/{username}")]
+		public async Task<IActionResult> Address(string username, [FromBody] AddressViewModel avm)
+		{
+			try
+			{
+				var newAddress = _mapper.Map<AddressViewModel, Address>(avm);
+				var currentUser = await _userManager.FindByNameAsync(username);
 				var updatedAddress = _repository.UpdateAddress(newAddress);
+				if (updatedAddress == null) return NotFound($"CAn't find this address");
 				_repository.AddAddressToUser(currentUser, updatedAddress);
 				return Ok(_mapper.Map<Address, AddressViewModel>(updatedAddress));
 			}

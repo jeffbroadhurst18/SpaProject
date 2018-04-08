@@ -188,17 +188,24 @@ namespace SpaProject.Data
 
 		public Address UpdateAddress(Address address)
 		{
-			var isNew = _ctx.Address.Any(a => a.Username == address.Username);
+			var itExists = _ctx.Address.Any(a => a.Username == address.Username);
 			
-			if (!isNew)
-			{
-				_ctx.Add(address);
-			}
-			else
+			if (itExists)
 			{
 				_ctx.Update(address);
 			}
+			else
+			{
+				return null;
+			}
 			_ctx.SaveChanges();
+			return _ctx.Address.Where(a => a.Username == address.Username).FirstOrDefault();
+		}
+
+		public Address AddAddress(Address address)
+		{
+				_ctx.Add(address);
+				_ctx.SaveChanges();
 			return _ctx.Address.Where(a => a.Username == address.Username).FirstOrDefault();
 		}
 

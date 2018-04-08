@@ -20,6 +20,7 @@ namespace SpaProject.Data
 		StoreUser GetLastUser();
 		Address GetAddress(string user);
 		Address UpdateAddress(Address address);
+		Address AddAddress(Address address);
 		bool AddAddressToUser(StoreUser currentUser, Address updatedAddress);
 	}
 }
